@@ -4,7 +4,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Подбор курсов</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://telegram.org/js/telegram-web-app.js">
+/* ===== SAFE PATCH: recommendations never empty ===== */
+function ensureRecommendations(){
+  const grid = document.getElementById("recommendations");
+  if(!grid) return;
+
+  let cards = grid.querySelectorAll(".card");
+
+  if(cards.length >= 2) return;
+
+  // собрать все курсы
+  let allCourses = [];
+  for(let cat in courses){
+    allCourses = allCourses.concat(courses[cat]);
+  }
+
+  let index = 0;
+  while(grid.querySelectorAll(".card").length < 2 && index < allCourses.length){
+    const c = allCourses[index];
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <h3>${c.title}</h3>
+      <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
+    `;
+    grid.appendChild(div);
+    index++;
+  }
+
+  // максимум 3
+  while(grid.querySelectorAll(".card").length > 3){
+    grid.removeChild(grid.lastChild);
+  }
+}
+
+// оборачиваем оригинальный showResult
+if(typeof showResult === "function"){
+  const originalShowResult = showResult;
+  showResult = function(){
+    originalShowResult();
+    setTimeout(ensureRecommendations, 0);
+  }
+}
+
+/* ===== SAFE PATCH: colorful catalog like screenshot ===== */
+
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
+
+function colorizeCatalog(){
+  const cards = document.querySelectorAll("#catalogGrid .card, #categoryCourses .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
+}
+
+// оборачиваем showCatalog
+if(typeof showCatalog === "function"){
+  const originalShowCatalog = showCatalog;
+  showCatalog = function(){
+    originalShowCatalog();
+    setTimeout(colorizeCatalog, 0);
+  }
+}
+
+</script>
 
 <style>
 *{box-sizing:border-box;}
@@ -39,7 +112,7 @@ h1,h2,h3{
   padding:18px;
   border-radius:18px;
   background:linear-gradient(135deg,#7f5af0,#2cb1ff);
-  min-height:120px;
+  min-height:170px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -47,7 +120,7 @@ h1,h2,h3{
 }
 
 .card h3{
-  font-size:15px;
+  font-size:18px;
   line-height:1.3;
   word-break:break-word;
 }
@@ -84,17 +157,7 @@ h1,h2,h3{
   .card{min-height:160px;}
   .card h3{font-size:16px;}
 }
-
-.main-cta{
-  padding:18px;
-  font-size:18px;
-  font-weight:700;
-  background:linear-gradient(135deg,#8e2de2,#ff2e88);
-  color:#fff;
-  box-shadow:0 10px 25px rgba(200,0,255,0.35);
-}
 </style>
-
 </head>
 
 <body>
@@ -119,7 +182,7 @@ h1,h2,h3{
     В каталоге собраны десятки других вариантов — вы точно найдёте решение под себя.
   </div>
 
-  <button class="button main-cta" onclick="showCatalog()">Смотреть все курсы</button>
+  <button class="button" onclick="showCatalog()">Смотреть все курсы</button>
 </div>
 
 <div id="catalog" class="hidden">
@@ -2227,18 +2290,6 @@ function showResult(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-
-const catalogGradients = [
-"linear-gradient(135deg,#4e73df,#1cc88a)",
-"linear-gradient(135deg,#9c27b0,#ff6ec4)",
-"linear-gradient(135deg,#36b9cc,#3a7bd5)",
-"linear-gradient(135deg,#ff4b2b,#ff416c)",
-"linear-gradient(135deg,#667eea,#764ba2)",
-"linear-gradient(135deg,#43cea2,#185a9d)",
-"linear-gradient(135deg,#f093fb,#f5576c)",
-"linear-gradient(135deg,#ff9966,#ff5e62)"
-];
-
 function showCatalog(){
   document.getElementById("result").classList.add("hidden");
   document.getElementById("catalog").classList.remove("hidden");
@@ -2280,6 +2331,79 @@ function backToCatalog(){
 }
 
 renderQuestion();
+
+
+/* ===== SAFE PATCH: recommendations never empty ===== */
+function ensureRecommendations(){
+  const grid = document.getElementById("recommendations");
+  if(!grid) return;
+
+  let cards = grid.querySelectorAll(".card");
+
+  if(cards.length >= 2) return;
+
+  // собрать все курсы
+  let allCourses = [];
+  for(let cat in courses){
+    allCourses = allCourses.concat(courses[cat]);
+  }
+
+  let index = 0;
+  while(grid.querySelectorAll(".card").length < 2 && index < allCourses.length){
+    const c = allCourses[index];
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <h3>${c.title}</h3>
+      <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
+    `;
+    grid.appendChild(div);
+    index++;
+  }
+
+  // максимум 3
+  while(grid.querySelectorAll(".card").length > 3){
+    grid.removeChild(grid.lastChild);
+  }
+}
+
+// оборачиваем оригинальный showResult
+if(typeof showResult === "function"){
+  const originalShowResult = showResult;
+  showResult = function(){
+    originalShowResult();
+    setTimeout(ensureRecommendations, 0);
+  }
+}
+
+/* ===== SAFE PATCH: colorful catalog like screenshot ===== */
+
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
+
+function colorizeCatalog(){
+  const cards = document.querySelectorAll("#catalogGrid .card, #categoryCourses .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
+}
+
+// оборачиваем showCatalog
+if(typeof showCatalog === "function"){
+  const originalShowCatalog = showCatalog;
+  showCatalog = function(){
+    originalShowCatalog();
+    setTimeout(colorizeCatalog, 0);
+  }
+}
 
 </script>
 </body>
