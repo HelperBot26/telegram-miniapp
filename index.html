@@ -4,123 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Подбор курсов</title>
-<script src="https://telegram.org/js/telegram-web-app.js">
-/* ===== COLORFUL CATALOG ===== */
-const catalogGradients = [
-"linear-gradient(135deg,#4e73df,#1cc88a)",
-"linear-gradient(135deg,#9c27b0,#ff6ec4)",
-"linear-gradient(135deg,#36b9cc,#3a7bd5)",
-"linear-gradient(135deg,#ff4b2b,#ff416c)",
-"linear-gradient(135deg,#667eea,#764ba2)",
-"linear-gradient(135deg,#43cea2,#185a9d)",
-"linear-gradient(135deg,#f093fb,#f5576c)",
-"linear-gradient(135deg,#ff9966,#ff5e62)"
-];
-
-function applyCatalogColors(){
-  const cards = document.querySelectorAll("#catalogGrid .card");
-  cards.forEach((card,index)=>{
-    card.style.background = catalogGradients[index % catalogGradients.length];
-  });
-}
-
-if(typeof showCatalog === "function"){
-  const originalShowCatalog = showCatalog;
-  showCatalog = function(){
-    originalShowCatalog();
-    setTimeout(applyCatalogColors,0);
-  }
-}
-
-/* ===== SAFE GENDER FILTER ===== */
-
-function filterByGender(){
-  if(typeof answers === "undefined") return;
-  if(!answers.length) return;
-
-  const gender = answers[0];
-  const grid = document.getElementById("recommendations");
-  if(!grid) return;
-
-  let cards = Array.from(grid.querySelectorAll(".card"));
-
-  // 1. Мужчинам убираем женские и эзотерику
-  if(gender === "Мужчина"){
-    cards.forEach(card=>{
-      const t = card.innerText.toLowerCase();
-      if(
-        t.includes("массаж лица") ||
-        t.includes("маникюр") ||
-        t.includes("визаж") ||
-        t.includes("ресниц") ||
-        t.includes("бьюти") ||
-        t.includes("эзотер")
-      ){
-        card.remove();
-      }
-    });
-  }
-
-  // 2. Женщинам гарантируем 1-2 эзотерических
-  if(gender === "Женщина" && courses["Эзотерика"]){
-    let hasEsoteric = Array.from(grid.querySelectorAll(".card")).some(c =>
-      c.innerText.toLowerCase().includes("эзотер")
-    );
-
-    if(!hasEsoteric){
-      const esoteric = courses["Эзотерика"];
-      const count = Math.floor(Math.random()*2)+1;
-      for(let i=0;i<count;i++){
-        const randomItem = esoteric[Math.floor(Math.random()*esoteric.length)];
-        const div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `
-          <h3>${randomItem.title}</h3>
-          <button class="button" onclick="window.open('${randomItem.url}','_blank')">Подробнее</button>
-        `;
-        grid.appendChild(div);
-      }
-    }
-  }
-
-  // 3. Гарантия 2-3 карточек, НЕ затирая рандом
-  let current = grid.querySelectorAll(".card");
-
-  if(current.length < 2){
-    let all = [];
-    for(let cat in courses){
-      all = all.concat(courses[cat]);
-    }
-    all = all.sort(()=>0.5-Math.random());
-
-    let i=0;
-    while(grid.querySelectorAll(".card").length < 2 && i<all.length){
-      const c = all[i];
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <h3>${c.title}</h3>
-        <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
-      `;
-      grid.appendChild(div);
-      i++;
-    }
-  }
-
-  while(grid.querySelectorAll(".card").length > 3){
-    grid.removeChild(grid.lastChild);
-  }
-}
-
-if(typeof showResult === "function"){
-  const originalShowResult = showResult;
-  showResult = function(){
-    originalShowResult();
-    setTimeout(filterByGender,0);
-  }
-}
-
-</script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
 *{box-sizing:border-box;}
@@ -2309,29 +2193,71 @@ function isMaleBlocked(title){
   return maleExcludeKeywords.some(k=>title.toLowerCase().includes(k));
 }
 
+
 function showResult(){
   document.getElementById("loading").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
 
-  const gender=answers[0];
-  let selected=[];
+  const gender = answers[0];
+  let pool = [];
 
+  // собираем все курсы
   for(let cat in courses){
-    for(let c of courses[cat]){
-      if(selected.length>=3) break;
-
-      if(gender==="Мужчина" && isMaleBlocked(c.title)) continue;
-
-      if(gender==="Женщина" && femaleKeywords.some(k=>c.title.toLowerCase().includes(k))){
-        selected.push(c);
-      }
-    }
+    pool = pool.concat(courses[cat]);
   }
 
-  selected=selected.slice(0,3);
+  // фильтрация по полу
+  if(gender === "Мужчина"){
+    pool = pool.filter(c => !maleExcludeKeywords.some(k =>
+      c.title.toLowerCase().includes(k)
+    ));
+  }
 
-  let recHtml="";
-  selected.forEach(c=>{
+  if(gender === "Женщина"){
+    // сначала общая выборка без ограничений
+    let esoteric = pool.filter(c =>
+      c.title.toLowerCase().includes("таро") ||
+      c.title.toLowerCase().includes("эзотер") ||
+      c.title.toLowerCase().includes("астро")
+    );
+
+    // перемешка
+    pool = pool.sort(()=>0.5-Math.random());
+
+    let selected = [];
+
+    // 1-2 эзотерики обязательно
+    if(esoteric.length){
+      esoteric = esoteric.sort(()=>0.5-Math.random());
+      selected = selected.concat(esoteric.slice(0, Math.floor(Math.random()*2)+1));
+    }
+
+    // добираем остальными
+    pool.forEach(c=>{
+      if(selected.length<3 && !selected.includes(c)){
+        selected.push(c);
+      }
+    });
+
+    pool = selected;
+  } else {
+    pool = pool.sort(()=>0.5-Math.random());
+  }
+
+  // гарантия 2-3
+  if(pool.length < 2){
+    let all = [];
+    for(let cat in courses){
+      all = all.concat(courses[cat]);
+    }
+    all = all.sort(()=>0.5-Math.random());
+    pool = pool.concat(all);
+  }
+
+  let final = pool.slice(0,3);
+
+  let recHtml = "";
+  final.forEach(c=>{
     recHtml+=`
       <div class="card">
         <h3>${c.title}</h3>
@@ -2339,9 +2265,22 @@ function showResult(){
       </div>`;
   });
 
-  document.getElementById("recommendations").innerHTML=recHtml;
+  document.getElementById("recommendations").innerHTML = recHtml;
   window.scrollTo({top:0,behavior:"smooth"});
 }
+
+
+
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
 
 function showCatalog(){
   document.getElementById("result").classList.add("hidden");
@@ -2356,6 +2295,11 @@ function showCatalog(){
       </div>`;
   }
   document.getElementById("catalogGrid").innerHTML=html;
+
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -2384,122 +2328,6 @@ function backToCatalog(){
 }
 
 renderQuestion();
-
-
-/* ===== COLORFUL CATALOG ===== */
-const catalogGradients = [
-"linear-gradient(135deg,#4e73df,#1cc88a)",
-"linear-gradient(135deg,#9c27b0,#ff6ec4)",
-"linear-gradient(135deg,#36b9cc,#3a7bd5)",
-"linear-gradient(135deg,#ff4b2b,#ff416c)",
-"linear-gradient(135deg,#667eea,#764ba2)",
-"linear-gradient(135deg,#43cea2,#185a9d)",
-"linear-gradient(135deg,#f093fb,#f5576c)",
-"linear-gradient(135deg,#ff9966,#ff5e62)"
-];
-
-function applyCatalogColors(){
-  const cards = document.querySelectorAll("#catalogGrid .card");
-  cards.forEach((card,index)=>{
-    card.style.background = catalogGradients[index % catalogGradients.length];
-  });
-}
-
-if(typeof showCatalog === "function"){
-  const originalShowCatalog = showCatalog;
-  showCatalog = function(){
-    originalShowCatalog();
-    setTimeout(applyCatalogColors,0);
-  }
-}
-
-/* ===== SAFE GENDER FILTER ===== */
-
-function filterByGender(){
-  if(typeof answers === "undefined") return;
-  if(!answers.length) return;
-
-  const gender = answers[0];
-  const grid = document.getElementById("recommendations");
-  if(!grid) return;
-
-  let cards = Array.from(grid.querySelectorAll(".card"));
-
-  // 1. Мужчинам убираем женские и эзотерику
-  if(gender === "Мужчина"){
-    cards.forEach(card=>{
-      const t = card.innerText.toLowerCase();
-      if(
-        t.includes("массаж лица") ||
-        t.includes("маникюр") ||
-        t.includes("визаж") ||
-        t.includes("ресниц") ||
-        t.includes("бьюти") ||
-        t.includes("эзотер")
-      ){
-        card.remove();
-      }
-    });
-  }
-
-  // 2. Женщинам гарантируем 1-2 эзотерических
-  if(gender === "Женщина" && courses["Эзотерика"]){
-    let hasEsoteric = Array.from(grid.querySelectorAll(".card")).some(c =>
-      c.innerText.toLowerCase().includes("эзотер")
-    );
-
-    if(!hasEsoteric){
-      const esoteric = courses["Эзотерика"];
-      const count = Math.floor(Math.random()*2)+1;
-      for(let i=0;i<count;i++){
-        const randomItem = esoteric[Math.floor(Math.random()*esoteric.length)];
-        const div = document.createElement("div");
-        div.className = "card";
-        div.innerHTML = `
-          <h3>${randomItem.title}</h3>
-          <button class="button" onclick="window.open('${randomItem.url}','_blank')">Подробнее</button>
-        `;
-        grid.appendChild(div);
-      }
-    }
-  }
-
-  // 3. Гарантия 2-3 карточек, НЕ затирая рандом
-  let current = grid.querySelectorAll(".card");
-
-  if(current.length < 2){
-    let all = [];
-    for(let cat in courses){
-      all = all.concat(courses[cat]);
-    }
-    all = all.sort(()=>0.5-Math.random());
-
-    let i=0;
-    while(grid.querySelectorAll(".card").length < 2 && i<all.length){
-      const c = all[i];
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <h3>${c.title}</h3>
-        <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
-      `;
-      grid.appendChild(div);
-      i++;
-    }
-  }
-
-  while(grid.querySelectorAll(".card").length > 3){
-    grid.removeChild(grid.lastChild);
-  }
-}
-
-if(typeof showResult === "function"){
-  const originalShowResult = showResult;
-  showResult = function(){
-    originalShowResult();
-    setTimeout(filterByGender,0);
-  }
-}
 
 </script>
 </body>
