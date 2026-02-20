@@ -5,69 +5,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Подбор курсов</title>
 <script src="https://telegram.org/js/telegram-web-app.js">
-/* ===== GENDER LOGIC PATCH ===== */
+/* ===== COLORFUL CATALOG ===== */
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
 
-function applyGenderLogic(){
+function applyCatalogColors(){
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
+}
+
+if(typeof showCatalog === "function"){
+  const originalShowCatalog = showCatalog;
+  showCatalog = function(){
+    originalShowCatalog();
+    setTimeout(applyCatalogColors,0);
+  }
+}
+
+/* ===== SAFE GENDER FILTER ===== */
+
+function filterByGender(){
   if(typeof answers === "undefined") return;
   if(!answers.length) return;
 
-  const gender = answers[0]; // первый вопрос — пол
+  const gender = answers[0];
   const grid = document.getElementById("recommendations");
   if(!grid) return;
 
   let cards = Array.from(grid.querySelectorAll(".card"));
 
-  function removeCard(card){
-    if(card && card.parentNode){
-      card.parentNode.removeChild(card);
-    }
-  }
-
-  // Убираем женские курсы у мужчин
-  if(gender && gender.toLowerCase().includes("муж")){
+  // 1. Мужчинам убираем женские и эзотерику
+  if(gender === "Мужчина"){
     cards.forEach(card=>{
-      const text = card.innerText.toLowerCase();
+      const t = card.innerText.toLowerCase();
       if(
-        text.includes("массаж лица") ||
-        text.includes("маникюр") ||
-        text.includes("визаж") ||
-        text.includes("ресниц") ||
-        text.includes("бьюти") ||
-        text.includes("эзотер")
+        t.includes("массаж лица") ||
+        t.includes("маникюр") ||
+        t.includes("визаж") ||
+        t.includes("ресниц") ||
+        t.includes("бьюти") ||
+        t.includes("эзотер")
       ){
-        removeCard(card);
+        card.remove();
       }
     });
   }
 
-  // Женщинам добавляем 1-2 эзотерических курса
-  if(gender && gender.toLowerCase().includes("жен")){
-    let currentCards = Array.from(grid.querySelectorAll(".card"));
-    let hasEsoteric = currentCards.some(c =>
+  // 2. Женщинам гарантируем 1-2 эзотерических
+  if(gender === "Женщина" && courses["Эзотерика"]){
+    let hasEsoteric = Array.from(grid.querySelectorAll(".card")).some(c =>
       c.innerText.toLowerCase().includes("эзотер")
     );
 
-    if(!hasEsoteric && courses["Эзотерика"]){
-      let esoteric = courses["Эзотерика"];
-      let count = Math.floor(Math.random()*2)+1; // 1-2 курса
-      for(let i=0;i<count && i<esoteric.length;i++){
-        const c = esoteric[Math.floor(Math.random()*esoteric.length)];
+    if(!hasEsoteric){
+      const esoteric = courses["Эзотерика"];
+      const count = Math.floor(Math.random()*2)+1;
+      for(let i=0;i<count;i++){
+        const randomItem = esoteric[Math.floor(Math.random()*esoteric.length)];
         const div = document.createElement("div");
         div.className = "card";
         div.innerHTML = `
-          <h3>${c.title}</h3>
-          <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
+          <h3>${randomItem.title}</h3>
+          <button class="button" onclick="window.open('${randomItem.url}','_blank')">Подробнее</button>
         `;
         grid.appendChild(div);
       }
     }
   }
 
-  // Ограничение 2-3 курса
-  let finalCards = grid.querySelectorAll(".card");
-  while(finalCards.length < 2){
+  // 3. Гарантия 2-3 карточек, НЕ затирая рандом
+  let current = grid.querySelectorAll(".card");
+
+  if(current.length < 2){
+    let all = [];
     for(let cat in courses){
-      const c = courses[cat][0];
+      all = all.concat(courses[cat]);
+    }
+    all = all.sort(()=>0.5-Math.random());
+
+    let i=0;
+    while(grid.querySelectorAll(".card").length < 2 && i<all.length){
+      const c = all[i];
       const div = document.createElement("div");
       div.className = "card";
       div.innerHTML = `
@@ -75,9 +103,8 @@ function applyGenderLogic(){
         <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
       `;
       grid.appendChild(div);
-      break;
+      i++;
     }
-    finalCards = grid.querySelectorAll(".card");
   }
 
   while(grid.querySelectorAll(".card").length > 3){
@@ -85,12 +112,11 @@ function applyGenderLogic(){
   }
 }
 
-// Оборачиваем showResult
 if(typeof showResult === "function"){
   const originalShowResult = showResult;
   showResult = function(){
     originalShowResult();
-    setTimeout(applyGenderLogic, 0);
+    setTimeout(filterByGender,0);
   }
 }
 
@@ -129,7 +155,7 @@ h1,h2,h3{
   padding:18px;
   border-radius:18px;
   background:linear-gradient(135deg,#7f5af0,#2cb1ff);
-  min-height:170px;
+  min-height:120px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -137,7 +163,7 @@ h1,h2,h3{
 }
 
 .card h3{
-  font-size:18px;
+  font-size:15px;
   line-height:1.3;
   word-break:break-word;
 }
@@ -174,7 +200,17 @@ h1,h2,h3{
   .card{min-height:160px;}
   .card h3{font-size:16px;}
 }
+
+.main-cta{
+  padding:18px;
+  font-size:18px;
+  font-weight:700;
+  background:linear-gradient(135deg,#8e2de2,#ff2e88);
+  color:#fff;
+  box-shadow:0 10px 25px rgba(200,0,255,0.35);
+}
 </style>
+
 </head>
 
 <body>
@@ -199,7 +235,7 @@ h1,h2,h3{
     В каталоге собраны десятки других вариантов — вы точно найдёте решение под себя.
   </div>
 
-  <button class="button" onclick="showCatalog()">Смотреть все курсы</button>
+  <button class="button main-cta" onclick="showCatalog()">Смотреть все курсы</button>
 </div>
 
 <div id="catalog" class="hidden">
@@ -2350,69 +2386,97 @@ function backToCatalog(){
 renderQuestion();
 
 
-/* ===== GENDER LOGIC PATCH ===== */
+/* ===== COLORFUL CATALOG ===== */
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
 
-function applyGenderLogic(){
+function applyCatalogColors(){
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
+}
+
+if(typeof showCatalog === "function"){
+  const originalShowCatalog = showCatalog;
+  showCatalog = function(){
+    originalShowCatalog();
+    setTimeout(applyCatalogColors,0);
+  }
+}
+
+/* ===== SAFE GENDER FILTER ===== */
+
+function filterByGender(){
   if(typeof answers === "undefined") return;
   if(!answers.length) return;
 
-  const gender = answers[0]; // первый вопрос — пол
+  const gender = answers[0];
   const grid = document.getElementById("recommendations");
   if(!grid) return;
 
   let cards = Array.from(grid.querySelectorAll(".card"));
 
-  function removeCard(card){
-    if(card && card.parentNode){
-      card.parentNode.removeChild(card);
-    }
-  }
-
-  // Убираем женские курсы у мужчин
-  if(gender && gender.toLowerCase().includes("муж")){
+  // 1. Мужчинам убираем женские и эзотерику
+  if(gender === "Мужчина"){
     cards.forEach(card=>{
-      const text = card.innerText.toLowerCase();
+      const t = card.innerText.toLowerCase();
       if(
-        text.includes("массаж лица") ||
-        text.includes("маникюр") ||
-        text.includes("визаж") ||
-        text.includes("ресниц") ||
-        text.includes("бьюти") ||
-        text.includes("эзотер")
+        t.includes("массаж лица") ||
+        t.includes("маникюр") ||
+        t.includes("визаж") ||
+        t.includes("ресниц") ||
+        t.includes("бьюти") ||
+        t.includes("эзотер")
       ){
-        removeCard(card);
+        card.remove();
       }
     });
   }
 
-  // Женщинам добавляем 1-2 эзотерических курса
-  if(gender && gender.toLowerCase().includes("жен")){
-    let currentCards = Array.from(grid.querySelectorAll(".card"));
-    let hasEsoteric = currentCards.some(c =>
+  // 2. Женщинам гарантируем 1-2 эзотерических
+  if(gender === "Женщина" && courses["Эзотерика"]){
+    let hasEsoteric = Array.from(grid.querySelectorAll(".card")).some(c =>
       c.innerText.toLowerCase().includes("эзотер")
     );
 
-    if(!hasEsoteric && courses["Эзотерика"]){
-      let esoteric = courses["Эзотерика"];
-      let count = Math.floor(Math.random()*2)+1; // 1-2 курса
-      for(let i=0;i<count && i<esoteric.length;i++){
-        const c = esoteric[Math.floor(Math.random()*esoteric.length)];
+    if(!hasEsoteric){
+      const esoteric = courses["Эзотерика"];
+      const count = Math.floor(Math.random()*2)+1;
+      for(let i=0;i<count;i++){
+        const randomItem = esoteric[Math.floor(Math.random()*esoteric.length)];
         const div = document.createElement("div");
         div.className = "card";
         div.innerHTML = `
-          <h3>${c.title}</h3>
-          <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
+          <h3>${randomItem.title}</h3>
+          <button class="button" onclick="window.open('${randomItem.url}','_blank')">Подробнее</button>
         `;
         grid.appendChild(div);
       }
     }
   }
 
-  // Ограничение 2-3 курса
-  let finalCards = grid.querySelectorAll(".card");
-  while(finalCards.length < 2){
+  // 3. Гарантия 2-3 карточек, НЕ затирая рандом
+  let current = grid.querySelectorAll(".card");
+
+  if(current.length < 2){
+    let all = [];
     for(let cat in courses){
-      const c = courses[cat][0];
+      all = all.concat(courses[cat]);
+    }
+    all = all.sort(()=>0.5-Math.random());
+
+    let i=0;
+    while(grid.querySelectorAll(".card").length < 2 && i<all.length){
+      const c = all[i];
       const div = document.createElement("div");
       div.className = "card";
       div.innerHTML = `
@@ -2420,9 +2484,8 @@ function applyGenderLogic(){
         <button class="button" onclick="window.open('${c.url}','_blank')">Подробнее</button>
       `;
       grid.appendChild(div);
-      break;
+      i++;
     }
-    finalCards = grid.querySelectorAll(".card");
   }
 
   while(grid.querySelectorAll(".card").length > 3){
@@ -2430,12 +2493,11 @@ function applyGenderLogic(){
   }
 }
 
-// Оборачиваем showResult
 if(typeof showResult === "function"){
   const originalShowResult = showResult;
   showResult = function(){
     originalShowResult();
-    setTimeout(applyGenderLogic, 0);
+    setTimeout(filterByGender,0);
   }
 }
 
