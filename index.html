@@ -9,21 +9,22 @@
 <style>
 body{
   margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
-  background:#0e0f14;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:linear-gradient(180deg,#0f1020,#14162a);
   color:#fff;
 }
 
 .container{
   padding:20px 16px 40px;
-  max-width:700px;
+  max-width:900px;
   margin:0 auto;
 }
 
 h1{
-  font-size:22px;
+  font-size:24px;
   margin-bottom:25px;
   font-weight:600;
+  text-align:center;
 }
 
 h2{
@@ -31,22 +32,33 @@ h2{
   margin-bottom:20px;
 }
 
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
 .card{
-  background:linear-gradient(145deg,#1a1c24,#12131a);
   padding:18px;
-  border-radius:14px;
+  border-radius:16px;
   margin-bottom:14px;
-  box-shadow:0 4px 20px rgba(0,0,0,0.4);
-  transition:0.2s;
+  box-shadow:0 6px 25px rgba(0,0,0,0.4);
+  transition:0.25s;
+  backdrop-filter:blur(6px);
 }
 
 .card:hover{
-  transform:translateY(-2px);
+  transform:translateY(-4px);
 }
+
+.gradient-1{background:linear-gradient(135deg,#7f5af0,#2cb1ff);}
+.gradient-2{background:linear-gradient(135deg,#ff6ec7,#7873f5);}
+.gradient-3{background:linear-gradient(135deg,#2cb1ff,#5f72ff);}
+.gradient-4{background:linear-gradient(135deg,#f857a6,#ff5858);}
 
 .card h3{
   margin:0;
-  font-size:16px;
+  font-size:15px;
   font-weight:500;
 }
 
@@ -54,11 +66,11 @@ h2{
   width:100%;
   padding:12px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   margin-top:14px;
-  background:linear-gradient(90deg,#2ea6ff,#0078ff);
-  color:#fff;
-  font-size:14px;
+  background:linear-gradient(90deg,#ffffff,#dfe9ff);
+  color:#111;
+  font-weight:600;
   cursor:pointer;
   transition:0.2s;
 }
@@ -71,11 +83,10 @@ h2{
   width:100%;
   padding:12px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   margin-top:25px;
-  background:#22232c;
+  background:#1f2238;
   color:#aaa;
-  font-size:14px;
   cursor:pointer;
 }
 
@@ -91,6 +102,12 @@ h2{
   from{opacity:0; transform:translateY(5px);}
   to{opacity:1; transform:translateY(0);}
 }
+
+@media(max-width:600px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 
@@ -99,124 +116,124 @@ h2{
 
 <h1>Каталог курсов</h1>
 
-<div id="categories" class="fade">
+<div id="categories" class="grid fade">
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Бизнес и финансы</h3>
     <button class="button-primary" onclick="openSection('cat_0')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Бьюти-профессии</h3>
     <button class="button-primary" onclick="openSection('cat_1')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Дизайн и архитектура</h3>
     <button class="button-primary" onclick="openSection('cat_2')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Для женщин</h3>
     <button class="button-primary" onclick="openSection('cat_3')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Здоровье и спорт</h3>
     <button class="button-primary" onclick="openSection('cat_4')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Инвестирование и трейдинг</h3>
     <button class="button-primary" onclick="openSection('cat_5')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Иностранные языки</h3>
     <button class="button-primary" onclick="openSection('cat_6')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Маркетинг и реклама</h3>
     <button class="button-primary" onclick="openSection('cat_7')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Программирование</h3>
     <button class="button-primary" onclick="openSection('cat_8')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Психология</h3>
     <button class="button-primary" onclick="openSection('cat_9')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Саморазвитие</h3>
     <button class="button-primary" onclick="openSection('cat_10')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Семья и дети</h3>
     <button class="button-primary" onclick="openSection('cat_11')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Удалённая работа</h3>
     <button class="button-primary" onclick="openSection('cat_12')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Хобби и увлечения</h3>
     <button class="button-primary" onclick="openSection('cat_13')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Школа и институт</h3>
     <button class="button-primary" onclick="openSection('cat_14')">
-      Открыть
+      Смотреть
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Эзотерика</h3>
     <button class="button-primary" onclick="openSection('cat_15')">
-      Открыть
+      Смотреть
     </button>
   </div>
 </div>
 <div id="cat_0" class="hidden fade">
   <h2>Бизнес и финансы</h2>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как выйти на доход от 1 до 10 миллионов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=23048&w=204884&l=3')">
@@ -224,7 +241,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как бухгалтеру вести учёт на Маркетплейсах</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=26958&w=204884&l=5')">
@@ -232,7 +249,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Основной лендинг</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2769&w=204884&l=1')">
@@ -240,7 +257,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Маркетплейсы: быстрый старт на любой площадке</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=32287&w=204884&l=1')">
@@ -248,7 +265,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Получите современное бизнес-образование</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=35309&w=204884&l=1')">
@@ -256,7 +273,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как создать онлайн продукт с помощью нейросетей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=42854&w=204884&l=1')">
@@ -264,7 +281,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как создать онлайн продукт с помощью нейросетей (дизайн)</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=42854&w=204884&l=2')">
@@ -272,7 +289,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Создание автоматической воронки продаж</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54785&w=204884&l=1')">
@@ -280,7 +297,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курсы центра обучения</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=68745&w=204884&l=1')">
@@ -288,7 +305,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Тех. специалист по настройке Геткурс</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=8389&w=204884&l=2')">
@@ -296,7 +313,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>10 способов завоевать авторитет</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=88570&w=204884&l=2')">
@@ -304,7 +321,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Профессиональное управление сотрудниками</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=88570&w=204884&l=3')">
@@ -312,7 +329,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как зарабатывать от 100.000₽ в месяц в Telegram на автомате</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=92501&w=204884&l=2')">
@@ -320,7 +337,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как превратить Telegram в машину по заработку денег</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=92501&w=204884&l=3')">
@@ -328,7 +345,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как зарабатывать до 200 000 руб. в месяц</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=92501&w=204884&l=5')">
@@ -336,7 +353,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как открыть кофейню или пекарню с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=95969&w=204884&l=1')">
@@ -350,7 +367,7 @@ h2{
 <div id="cat_1" class="hidden fade">
   <h2>Бьюти-профессии</h2>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Техника массажа лица</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=12558&w=204884&l=1')">
@@ -358,7 +375,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Векторный массаж лица</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=12558&w=204884&l=2')">
@@ -366,7 +383,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Массаж шейно-воротниковой зоны</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19132&w=204884&l=1')">
@@ -374,7 +391,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Мастер маникюра и педикюра</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=1')">
@@ -382,7 +399,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Визажист-стилист</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=10')">
@@ -390,7 +407,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Бровист</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=11')">
@@ -398,7 +415,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Лэшмейкер</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=12')">
@@ -406,7 +423,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Стилист-имиджмейкер</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=13')">
@@ -414,7 +431,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Мастер-универсал ногтевого сервиса</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=2')">
@@ -422,7 +439,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Косметолог-эстетист</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=3')">
@@ -430,7 +447,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Парикмахер-универсал</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=4')">
@@ -438,7 +455,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Мастер по депиляции</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=5')">
@@ -446,7 +463,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Мастер по бровям и ресницам</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=6')">
@@ -454,7 +471,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Мастер массажа лица</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=7')">
@@ -462,7 +479,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Визажист</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=19833&w=204884&l=8')">
@@ -470,7 +487,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Векторный самомассаж</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=33927&w=204884&l=1')">
@@ -478,7 +495,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>5 эффективных техник массажа лица</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=70140&w=204884&l=2')">
@@ -486,7 +503,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Массаж лица</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=70140&w=204884&l=3')">
@@ -494,7 +511,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Онлайн курсы визажиста</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=74724&w=204884&l=3')">
@@ -502,7 +519,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Онлайн-курс стилистов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=74724&w=204884&l=5')">
@@ -516,7 +533,7 @@ h2{
 <div id="cat_2" class="hidden fade">
   <h2>Дизайн и архитектура</h2>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Как стать дизайнером интерьеров</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=15031&w=204884&l=1')">
@@ -524,7 +541,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Дизайнер интерьера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=15031&w=204884&l=2')">
@@ -532,7 +549,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Бесплатный 3-х дневный интенсив по дизайну интерьера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=15031&w=204884&l=4')">
@@ -540,7 +557,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Погружение в профессию Дизайнер интерьера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=18039&w=204884&l=8')">
@@ -548,7 +565,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Как заработать на инфографике</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=45611&w=204884&l=1')">
@@ -556,7 +573,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Продающий визуал для маркетплейсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=45611&w=204884&l=3')">
@@ -564,7 +581,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Заработок на инфографике для маркетплейсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=45611&w=204884&l=4')">
@@ -572,7 +589,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Дизайн-проект</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5770&w=204884&l=1')">
@@ -580,7 +597,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Дорожная карта от 0 до 100 000 ₽ в 3D-визуализации</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90775&w=204884&l=1')">
@@ -588,7 +605,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Книга про Adobe illustrator</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=92580&w=204884&l=2')">
@@ -602,7 +619,7 @@ h2{
 <div id="cat_3" class="hidden fade">
   <h2>Для женщин</h2>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>3 секрета ярких любовных отношений</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=15658&w=204884&l=1')">
@@ -610,7 +627,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Секреты ярких любовных отношений</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=15658&w=204884&l=7')">
@@ -618,7 +635,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как снова стать сексуальной и желанной</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=30062&w=204884&l=1')">
@@ -626,7 +643,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Секреты идеальных любовниц</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=30062&w=204884&l=2')">
@@ -634,7 +651,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как увеличить пространство без больших вложений</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41654&w=204884&l=1')">
@@ -642,7 +659,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Искусство орального секса</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=48782&w=204884&l=1')">
@@ -650,7 +667,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Тайские трюки</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=48782&w=204884&l=2')">
@@ -658,7 +675,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на косметолога-эстетиста</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=1')">
@@ -666,7 +683,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на нумеролога</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=10')">
@@ -674,7 +691,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение по специальности воспитатель</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=11')">
@@ -682,7 +699,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на юриста</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=12')">
@@ -690,7 +707,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на фитнес-тренера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=13')">
@@ -698,7 +715,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на бизнес-тренера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=15')">
@@ -706,7 +723,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на главного бухгалтера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=16')">
@@ -714,7 +731,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Специалист по НЛП</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=17')">
@@ -722,7 +739,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на нутрициолога</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=2')">
@@ -730,7 +747,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на массажиста</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=20')">
@@ -738,7 +755,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на менеджера маркетплейсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=3')">
@@ -746,7 +763,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение на таролога</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54403&w=204884&l=7')">
@@ -754,7 +771,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Витаминная трансформация</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=55253&w=204884&l=1')">
@@ -762,7 +779,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Сам себе диетолог</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=60131&w=204884&l=1')">
@@ -770,7 +787,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Путеводитель по женскому удовольствию. Из точки А в точку G</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=60715&w=204884&l=1')">
@@ -778,7 +795,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как вернуть в постель страсть, умопомрачительные оргазмы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=60715&w=204884&l=2')">
@@ -786,7 +803,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Тест-драйв курса Anti-age</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=65295&w=204884&l=2')">
@@ -794,7 +811,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Курсы Fashion Factory school</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=65417&w=204884&l=1')">
@@ -802,7 +819,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как легко зарабатывать от 100 000 руб. на наращивании ресниц</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=73179&w=204884&l=1')">
@@ -810,7 +827,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как легко зарабатывать от 100 000 Р на наращивании ресниц уже через 2 месяца</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=73179&w=204884&l=3')">
@@ -818,7 +835,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как получать наслаждение с мужчиной ярко и страстно</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=77913&w=204884&l=1')">
@@ -826,7 +843,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как завладеть членом и сердцем мужчины и заставить умолять о близости</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=77913&w=204884&l=2')">
@@ -834,7 +851,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как раскрыть свою чувственность, получать удовольствие в постели</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=82298&w=204884&l=1')">
@@ -842,7 +859,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как помолодеть быстро с помощью тейпирования</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90776&w=204884&l=1')">
@@ -850,7 +867,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Профессиональный организатор пространства</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=96285&w=204884&l=1')">
@@ -864,7 +881,7 @@ h2{
 <div id="cat_4" class="hidden fade">
   <h2>Здоровье и спорт</h2>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Истинные причины аллергии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=12485&w=204884&l=1')">
@@ -872,7 +889,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как лечить аллергию у детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=13023&w=204884&l=3')">
@@ -880,7 +897,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Иммунитет на тарелке</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=13023&w=204884&l=5')">
@@ -888,7 +905,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Лёгкий старт</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17617&w=204884&l=1')">
@@ -896,7 +913,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Йога на гвоздях</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17617&w=204884&l=3')">
@@ -904,7 +921,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Старт в нутрициологии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=28658&w=204884&l=1')">
@@ -912,7 +929,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как вернуть тонус, чувствительность женским мышцам</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=30131&w=204884&l=1')">
@@ -920,7 +937,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>ЖКТ сбоит: куда копать, что делать?</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=31615&w=204884&l=1')">
@@ -928,7 +945,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Анкета оценки состояния здоровья и самочувствия</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=31887&w=204884&l=1')">
@@ -936,7 +953,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Невесомость</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=37987&w=204884&l=1')">
@@ -944,7 +961,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как правильно составить рацион питания</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=38769&w=204884&l=4')">
@@ -952,7 +969,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Знакомство с нутрициологией</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41989&w=204884&l=1')">
@@ -960,7 +977,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Оздоровительная гимнастика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=45310&w=204884&l=2')">
@@ -968,7 +985,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как женщине старше 55 лет вернуть память, как в молодости, и защитить себя от деменции и Альцгеймера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=49428&w=204884&l=1')">
@@ -976,7 +993,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как мужчине старше 55 лет вернуть память, как в молодости, и защитить себя от деменции и Альцгеймера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=49428&w=204884&l=2')">
@@ -984,7 +1001,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Мягкий старт в нутрициологию с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=49782&w=204884&l=1')">
@@ -992,7 +1009,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>5 шагов к здоровой спине и красивой осанке в любом возрасте</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=52461&w=204884&l=1')">
@@ -1000,7 +1017,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Здоровый и гибкий позвоночник в 35+ 45+ 55+ 65+</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=52461&w=204884&l=6')">
@@ -1008,7 +1025,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Выстраиваем таз и позвоночник правильно</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=52461&w=204884&l=7')">
@@ -1016,7 +1033,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как навсегда убрать вздутие живота</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=57053&w=204884&l=1')">
@@ -1024,7 +1041,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Мастер самоисцеления 3.0</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=58753&w=204884&l=1')">
@@ -1032,7 +1049,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как избавиться от боли и напряжения в спине</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=58753&w=204884&l=3')">
@@ -1040,7 +1057,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>ЦЕЛОСТНЫЕ ДВИЖЕНИЯ</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=58753&w=204884&l=4')">
@@ -1048,7 +1065,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Избавление от паразитов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=59849&w=204884&l=1')">
@@ -1056,7 +1073,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Нутрициология будущего</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=60468&w=204884&l=1')">
@@ -1064,7 +1081,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>5 секретов здоровья коленных и тазобедренных суставов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61864&w=204884&l=1')">
@@ -1072,7 +1089,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Лига Нутрициологии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=63079&w=204884&l=1')">
@@ -1080,7 +1097,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Нить Жизни-Движение от 100 болезней</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=64974&w=204884&l=2')">
@@ -1088,7 +1105,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Культура питания</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=65634&w=204884&l=1')">
@@ -1096,7 +1113,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Очищение 360. Берем здоровье под контроль</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=65634&w=204884&l=2')">
@@ -1104,7 +1121,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Кишечник: как избавиться от дискомфорта и восстановить здоровье ЖКТ</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=65634&w=204884&l=3')">
@@ -1112,7 +1129,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Очищение организма от шлаков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=65634&w=204884&l=4')">
@@ -1120,7 +1137,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как нормализовать работу ЖКТ</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=65634&w=204884&l=6')">
@@ -1128,7 +1145,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс от скованности в спине</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=12')">
@@ -1136,7 +1153,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс для красивой осанки</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=13')">
@@ -1144,7 +1161,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс для улучшения мышления, зрения и слуха</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=15')">
@@ -1152,7 +1169,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс для снижения лишнего веса</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=17')">
@@ -1160,7 +1177,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Метаболизм: перезагрузка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=24')">
@@ -1168,7 +1185,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Восстановите правильный обмен веществ</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=25')">
@@ -1176,7 +1193,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Перезагрузка метаболизма</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=3')">
@@ -1184,7 +1201,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Чистка от паразитов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=38')">
@@ -1192,7 +1209,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Метаболизм: ключ к стройности</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=48')">
@@ -1200,7 +1217,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Безопасное восстановление тазового дна и интимного здоровья</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=50')">
@@ -1208,7 +1225,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Целительное очищение</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=51')">
@@ -1216,7 +1233,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как предотвратить возрастные изменения в мозгу после 60</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=52')">
@@ -1224,7 +1241,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Здоровая спина</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=55')">
@@ -1232,7 +1249,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Антигрыжа</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=7')">
@@ -1240,7 +1257,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Здоровая спина</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7406&w=204884&l=9')">
@@ -1248,7 +1265,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Алгоритм расшифровки ОАК</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=76213&w=204884&l=1')">
@@ -1256,7 +1273,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Тренировки для улучшения зрения</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=8101&w=204884&l=1')">
@@ -1264,7 +1281,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Восстановление зрения</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=8101&w=204884&l=5')">
@@ -1272,7 +1289,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Каталог курсов Белояр</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90514&w=204884&l=2')">
@@ -1280,7 +1297,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Азбука Белояр</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90514&w=204884&l=3')">
@@ -1288,7 +1305,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Жизнь без диабета</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=91222&w=204884&l=1')">
@@ -1296,7 +1313,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Жизнь без диабета</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=91222&w=204884&l=2')">
@@ -1304,7 +1321,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как решить проблемы со здоровьем печени, желчного, ЖКТ</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93300&w=204884&l=1')">
@@ -1312,7 +1329,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как за 3 месяца избавиться от изжоги и гастрита</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=97085&w=204884&l=1')">
@@ -1320,7 +1337,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как гипертоникам избавиться от повышенного давления</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=97085&w=204884&l=15')">
@@ -1328,7 +1345,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как повысить иммунитет и избавиться от частых простуд</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=97085&w=204884&l=18')">
@@ -1336,7 +1353,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как восстановить здоровье без лекарств</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=97085&w=204884&l=2')">
@@ -1344,7 +1361,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как женщине избавиться от прыщей, акне, пигментации</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=97085&w=204884&l=4')">
@@ -1352,7 +1369,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как за 1 месяц восстановить энергию и ресурс</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=97085&w=204884&l=6')">
@@ -1366,7 +1383,7 @@ h2{
 <div id="cat_5" class="hidden fade">
   <h2>Инвестирование и трейдинг</h2>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Курс по волновому анализу Эллиотта</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=10260&w=204884&l=1')">
@@ -1374,7 +1391,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Лёгкий старт в зарубежной недвижимости</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=10573&w=204884&l=1')">
@@ -1382,7 +1399,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как стать риелтором зарубежной недвижимости</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=10573&w=204884&l=2')">
@@ -1390,7 +1407,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Первые шаги в инвестировании</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1099&w=204884&l=1')">
@@ -1398,7 +1415,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Основы инвестирования</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=23538&w=204884&l=2')">
@@ -1406,7 +1423,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Криптоаналитика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=47807&w=204884&l=13')">
@@ -1414,7 +1431,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Крипто Airdrops</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=47807&w=204884&l=2')">
@@ -1422,7 +1439,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Вход в воронку</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=47807&w=204884&l=3')">
@@ -1430,7 +1447,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Копи-трейдинг</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=47807&w=204884&l=4')">
@@ -1438,7 +1455,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Пошаговая инструкция заработка на крипте без вложений</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5482&w=204884&l=2')">
@@ -1446,7 +1463,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как зарабатывать на криптовалюте с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5482&w=204884&l=7')">
@@ -1454,7 +1471,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Школа трейдинга</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=67176&w=204884&l=1')">
@@ -1462,7 +1479,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Дом риэлтора</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=69821&w=204884&l=1')">
@@ -1470,7 +1487,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как с нуля разобраться в криптовалюте</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7949&w=204884&l=1')">
@@ -1478,7 +1495,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Вторая зарплата на крипте</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7949&w=204884&l=3')">
@@ -1486,7 +1503,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Современный риэлтор</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=92465&w=204884&l=10')">
@@ -1500,7 +1517,7 @@ h2{
 <div id="cat_6" class="hidden fade">
   <h2>Иностранные языки</h2>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Уроки английского</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=28766&w=204884&l=2')">
@@ -1508,7 +1525,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>3 современные техники понимания на слух</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=29796&w=204884&l=1')">
@@ -1516,7 +1533,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Китайский язык для детей и подростков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=33233&w=204884&l=1')">
@@ -1524,7 +1541,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Итальянский Besstresso</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4017&w=204884&l=4')">
@@ -1532,7 +1549,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Говорим на английском</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=42940&w=204884&l=1')">
@@ -1540,7 +1557,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Английский для туристов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5109&w=204884&l=3')">
@@ -1548,7 +1565,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Английский для любого уровня</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5109&w=204884&l=8')">
@@ -1556,7 +1573,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Книга Учись учится</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5109&w=204884&l=9')">
@@ -1564,7 +1581,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Онлайн-занятия по английскому</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6608&w=204884&l=2')">
@@ -1572,7 +1589,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Онлайн-репетитор для детей с 4 до 10 лет</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6608&w=204884&l=3')">
@@ -1580,7 +1597,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Учить китайский легко и интересно</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=68177&w=204884&l=1')">
@@ -1588,7 +1605,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>С чего начать учить китайский?</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=68177&w=204884&l=2')">
@@ -1596,7 +1613,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Курсы школы Словоед</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=68177&w=204884&l=4')">
@@ -1604,7 +1621,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Китайский онлайн</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=68177&w=204884&l=6')">
@@ -1612,7 +1629,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Английский язык</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=75982&w=204884&l=2')">
@@ -1620,7 +1637,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Изучение немецкого языка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=75982&w=204884&l=3')">
@@ -1628,7 +1645,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Изучение французского языка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=75982&w=204884&l=4')">
@@ -1636,7 +1653,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Изучение испанского языка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=75982&w=204884&l=5')">
@@ -1644,7 +1661,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Изучение арабского языка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=75982&w=204884&l=9')">
@@ -1652,7 +1669,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Онлайн-школа иностранных языков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=82351&w=204884&l=1')">
@@ -1666,7 +1683,7 @@ h2{
 <div id="cat_7" class="hidden fade">
   <h2>Маркетинг и реклама</h2>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Заработок на интернет-рекламе с помощью нейросетей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=20409&w=204884&l=1')">
@@ -1674,7 +1691,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>SEO-специалист</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=21655&w=204884&l=1')">
@@ -1682,7 +1699,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Excel продвинутый уровень</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=21655&w=204884&l=15')">
@@ -1690,7 +1707,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Вторая зарплата в $ на ведении YOUTUBE каналов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=27381&w=204884&l=1')">
@@ -1698,7 +1715,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Вторая зарплата в $ на ведении YOUTUBE каналов 2</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=27381&w=204884&l=2')">
@@ -1706,7 +1723,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Клиенты и доход из соцсетей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3482&w=204884&l=2')">
@@ -1714,7 +1731,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Социальные сети на миллион</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3482&w=204884&l=5')">
@@ -1722,7 +1739,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Быстрые деньги из Телеграм</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40209&w=204884&l=3')">
@@ -1730,7 +1747,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>ТОП-4 способа реального заработка в интернете</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40209&w=204884&l=4')">
@@ -1738,7 +1755,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как зарабатывать от 80 000 в Телеграм – без опыта, знаний и больших вложений</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40209&w=204884&l=5')">
@@ -1746,7 +1763,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как зарабатывать от 80 000 руб. в месяц с нуля и без специальных навыков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40209&w=204884&l=6')">
@@ -1754,7 +1771,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как научить нейросети работать на вас</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6949&w=204884&l=1')">
@@ -1762,7 +1779,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как научить нейросети работать на вас и приносить доход</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6949&w=204884&l=3')">
@@ -1770,7 +1787,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>20 способов заработка на нейросетях</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6949&w=204884&l=5')">
@@ -1778,7 +1795,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Быстрый старт с нейросетями</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6949&w=204884&l=6')">
@@ -1786,7 +1803,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Менеджер маркетплейсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=91543&w=204884&l=1')">
@@ -1794,7 +1811,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как стать менеджером маркетплейсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93042&w=204884&l=5')">
@@ -1802,7 +1819,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Менеджер по работе с маркетплейсами</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93042&w=204884&l=6')">
@@ -1810,7 +1827,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как освоить трендовую профессию менеджер маркетплейсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93042&w=204884&l=7')">
@@ -1824,7 +1841,7 @@ h2{
 <div id="cat_8" class="hidden fade">
   <h2>Программирование</h2>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Python-разработчик</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=36757&w=204884&l=1')">
@@ -1832,7 +1849,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Специалист по Tilda</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=47667&w=204884&l=1')">
@@ -1840,7 +1857,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Создание сайтов на Tilda</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=47667&w=204884&l=2')">
@@ -1848,7 +1865,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Go - разработчик с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54693&w=204884&l=4')">
@@ -1862,7 +1879,7 @@ h2{
 <div id="cat_9" class="hidden fade">
   <h2>Психология</h2>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Чудо каждый день</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1363&w=204884&l=1')">
@@ -1870,7 +1887,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>ICF- коучинг</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17497&w=204884&l=4')">
@@ -1878,7 +1895,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Психолог-практик. Интегративный подход</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=21041&w=204884&l=2')">
@@ -1886,7 +1903,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Новая системная психология 2.0</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2272&w=204884&l=4')">
@@ -1894,7 +1911,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как стать психологом и начать помогать людям?</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=24148&w=204884&l=1')">
@@ -1902,7 +1919,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как простить мужчинам все обиды</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=24902&w=204884&l=4')">
@@ -1910,7 +1927,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Стань самой желанной для своего избранника</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=26213&w=204884&l=1')">
@@ -1918,7 +1935,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Онлайн-марафон Я взрослая</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=39015&w=204884&l=3')">
@@ -1926,7 +1943,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>СЕПАРАЦИЯ</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=39015&w=204884&l=4')">
@@ -1934,7 +1951,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Практический психолог</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=43193&w=204884&l=1')">
@@ -1942,7 +1959,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Подбор программы обучения</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=43193&w=204884&l=13')">
@@ -1950,7 +1967,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Формула Любви</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=46902&w=204884&l=1')">
@@ -1958,7 +1975,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>105 техник для работы с клиентами</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=55015&w=204884&l=1')">
@@ -1966,7 +1983,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как за 1 год стать психологом</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5854&w=204884&l=13')">
@@ -1974,7 +1991,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Старт в психологии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=5854&w=204884&l=14')">
@@ -1982,7 +1999,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Между нами девочками</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=79185&w=204884&l=1')">
@@ -1990,7 +2007,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Альфа состояние</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=89123&w=204884&l=1')">
@@ -2004,7 +2021,7 @@ h2{
 <div id="cat_10" class="hidden fade">
   <h2>Саморазвитие</h2>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Скорочтение</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1722&w=204884&l=1')">
@@ -2012,7 +2029,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Развитие мышления</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1722&w=204884&l=14')">
@@ -2020,7 +2037,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Идеальный русский</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1722&w=204884&l=15')">
@@ -2028,7 +2045,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Восстановление сил и ресурсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1722&w=204884&l=20')">
@@ -2036,7 +2053,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Профайлинг</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1722&w=204884&l=5')">
@@ -2044,7 +2061,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Мнемотехники</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1722&w=204884&l=6')">
@@ -2052,7 +2069,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Эмоциональный интеллект</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1722&w=204884&l=7')">
@@ -2060,7 +2077,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Тренажёр для развития памяти от 7 до 99 лет</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17637&w=204884&l=1')">
@@ -2068,7 +2085,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Глобус на пальце</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=2')">
@@ -2076,7 +2093,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Учись учиться</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=3')">
@@ -2084,7 +2101,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Как омолодить мозг на 20</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=4')">
@@ -2092,7 +2109,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Мнемотехника</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=5')">
@@ -2100,7 +2117,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Приведи мозг в тонус</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=6')">
@@ -2108,7 +2125,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Приведи свой мозг в тонус</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=7')">
@@ -2116,7 +2133,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Развитие памяти и внимания</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=8')">
@@ -2124,7 +2141,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Эффективное чтение</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=1881&w=204884&l=9')">
@@ -2132,7 +2149,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Мозг – суперсила</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4703&w=204884&l=1')">
@@ -2140,7 +2157,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Почему теряется способность концентрироваться</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4703&w=204884&l=10')">
@@ -2148,7 +2165,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Прокачайте мозг за 120 минут</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4703&w=204884&l=13')">
@@ -2156,7 +2173,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Как прокачать мозг за 2 часа</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4703&w=204884&l=14')">
@@ -2164,7 +2181,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Продуктивность, уверенность и гармония</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4703&w=204884&l=15')">
@@ -2172,7 +2189,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Как повысить продуктивность мозга на 100%</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4703&w=204884&l=17')">
@@ -2180,7 +2197,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Логопед для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=50983&w=204884&l=1')">
@@ -2188,7 +2205,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Логопед для взрослых</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=50983&w=204884&l=2')">
@@ -2196,7 +2213,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>58 бесплатных урока по каллиграфии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=74679&w=204884&l=1')">
@@ -2204,7 +2221,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>5 открытых уроков по каллиграфии для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=74679&w=204884&l=13')">
@@ -2212,7 +2229,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>29 бесплатных урока по скетчингу</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=74679&w=204884&l=3')">
@@ -2220,7 +2237,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>16 бесплатных уроков по каллиграфии и рисованию для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=74679&w=204884&l=4')">
@@ -2228,7 +2245,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Как омолодить мозг</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=85777&w=204884&l=1')">
@@ -2236,7 +2253,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Диагностика когнитивных способностей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=9545&w=204884&l=9')">
@@ -2250,7 +2267,7 @@ h2{
 <div id="cat_11" class="hidden fade">
   <h2>Семья и дети</h2>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Онлайн-школа для детей с 1 по 11 класс</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=10855&w=204884&l=1')">
@@ -2258,7 +2275,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обучение детей и подростков творческим it профессиям</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=15681&w=204884&l=1')">
@@ -2266,7 +2283,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как сделать телефона меньше, а оценки лучше</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=1')">
@@ -2274,7 +2291,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Марафон-игра для родителей по повышению успеваемости школьников 1-8 классов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=10')">
@@ -2282,7 +2299,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как подтянуть ребёнка в учёбе за 15 минут в день</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=15')">
@@ -2290,7 +2307,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>От Ничего не хочет до Мама, я всё понял!</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=18')">
@@ -2298,7 +2315,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как помочь ребёнку учиться на 4 и 5</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=2')">
@@ -2306,7 +2323,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Научим ребёнка учиться с интересом</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=3')">
@@ -2314,7 +2331,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как сделать так, чтобы ребёнок сам хотел учиться</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=4')">
@@ -2322,7 +2339,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как привить ребенку интерес к учебе</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=5')">
@@ -2330,7 +2347,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Оторвите школьника от гаджетов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16010&w=204884&l=6')">
@@ -2338,7 +2355,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Онлайн-школа детского развития "Стартум"</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16458&w=204884&l=1')">
@@ -2346,7 +2363,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Пробное занятие по ментальной арифметике</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16458&w=204884&l=3')">
@@ -2354,7 +2371,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Ментальная арифметика для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16458&w=204884&l=5')">
@@ -2362,7 +2379,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Айтигенио</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17486&w=204884&l=1')">
@@ -2370,7 +2387,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Курс Юный программист</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17486&w=204884&l=2')">
@@ -2378,7 +2395,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Курс Roblox в Айтигенио</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17486&w=204884&l=5')">
@@ -2386,7 +2403,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Курсы цифровой живописи для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17486&w=204884&l=8')">
@@ -2394,7 +2411,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Физика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=10')">
@@ -2402,7 +2419,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Химия</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=11')">
@@ -2410,7 +2427,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Дошкольники и младшие классы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=12')">
@@ -2418,7 +2435,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Логопед</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=13')">
@@ -2426,7 +2443,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Английский для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=14')">
@@ -2434,7 +2451,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Онлайн-занятия с опытными репетиторами</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=16')">
@@ -2442,7 +2459,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Английский язык</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=2')">
@@ -2450,7 +2467,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Биология</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=3')">
@@ -2458,7 +2475,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Информатика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=4')">
@@ -2466,7 +2483,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>История</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=5')">
@@ -2474,7 +2491,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Литература</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=6')">
@@ -2482,7 +2499,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Математика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=7')">
@@ -2490,7 +2507,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Обществознание</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=8')">
@@ -2498,7 +2515,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Русский язык</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2193&w=204884&l=9')">
@@ -2506,7 +2523,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Полноценное школьное образование с 5 по 11 класс</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=22882&w=204884&l=1')">
@@ -2514,7 +2531,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Бесплатные онлайн-уроки шахмат для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=31940&w=204884&l=1')">
@@ -2522,7 +2539,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Мотивация и обучение детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3497&w=204884&l=1')">
@@ -2530,7 +2547,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как мотивировать ребёнка учиться самостоятельно</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3497&w=204884&l=2')">
@@ -2538,7 +2555,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Развивающие курсы для детей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3497&w=204884&l=3')">
@@ -2546,7 +2563,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Учись учиться</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3497&w=204884&l=5')">
@@ -2554,7 +2571,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Марафон</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3497&w=204884&l=6')">
@@ -2562,7 +2579,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Монтессори дома от 3 до 6 лет</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40729&w=204884&l=1')">
@@ -2570,7 +2587,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Речь до 3 лет</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40729&w=204884&l=2')">
@@ -2578,7 +2595,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Самостоятельный и счастливый ребенок</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40729&w=204884&l=8')">
@@ -2586,7 +2603,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Самостоятельный и счастливый 3.0</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=40729&w=204884&l=9')">
@@ -2594,7 +2611,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Буллинг</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=10')">
@@ -2602,7 +2619,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Гаджеты</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=11')">
@@ -2610,7 +2627,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Эмоции</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=12')">
@@ -2618,7 +2635,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Что делать, когда ребёнок не хочет учиться?</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=13')">
@@ -2626,7 +2643,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Кто виноват, что ребёнок хамит родителям?</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=14')">
@@ -2634,7 +2651,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как защитить ребёнка от травли сверстников?</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=15')">
@@ -2642,7 +2659,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Что делать, если у ребёнка нет желания учиться</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=21')">
@@ -2650,7 +2667,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Помогите ребенку-одиночке стать своим в компаниях и найти друзей</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=25')">
@@ -2658,7 +2675,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Чему научить ребенка, чтобы он не пострадал от буллинга</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=28')">
@@ -2666,7 +2683,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Семинар с психологом</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=8')">
@@ -2674,7 +2691,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Не хочет учиться</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41031&w=204884&l=9')">
@@ -2682,7 +2699,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>IT Детям</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=51199&w=204884&l=1')">
@@ -2690,7 +2707,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Скорочтение онлайн</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=53211&w=204884&l=6')">
@@ -2698,7 +2715,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Ментальная арифметика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=53211&w=204884&l=9')">
@@ -2706,7 +2723,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Пробное занятие по скорочтению</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=53324&w=204884&l=3')">
@@ -2714,7 +2731,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Ментальная арифметика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=56687&w=204884&l=1')">
@@ -2722,7 +2739,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Мощное развитие интеллекта ребёнка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=56687&w=204884&l=2')">
@@ -2730,7 +2747,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Станьте родителем выдающегося ребёнка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=56687&w=204884&l=3')">
@@ -2738,7 +2755,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Ключ к ребёнку и себе</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=60988&w=204884&l=2')">
@@ -2746,7 +2763,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Ключ к ребенку  и к себе</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=60988&w=204884&l=3')">
@@ -2754,7 +2771,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Детская логопедия онлайн от 4 до 11 лет</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=71886&w=204884&l=2')">
@@ -2762,7 +2779,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Подготовка к экзаменам и олимпиадам</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=83493&w=204884&l=1')">
@@ -2770,7 +2787,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Бесплатный урок по IT-профессиям для ребёнка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93134&w=204884&l=1')">
@@ -2778,7 +2795,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>3D-моделирование для детей и подростков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93134&w=204884&l=10')">
@@ -2786,7 +2803,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Дизайнер в IT для детей и подростков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93134&w=204884&l=11')">
@@ -2794,7 +2811,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Разработка игр для детей и подростков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93134&w=204884&l=7')">
@@ -2802,7 +2819,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Программирование на Python для детей и подростков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93134&w=204884&l=8')">
@@ -2810,7 +2827,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Школа медиа для детей и подростков</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93134&w=204884&l=9')">
@@ -2824,7 +2841,7 @@ h2{
 <div id="cat_12" class="hidden fade">
   <h2>Удалённая работа</h2>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс Я-РИЭЛТОР</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=12164&w=204884&l=1')">
@@ -2832,7 +2849,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Создание ботов на базе ИИ и нейронок</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=20075&w=204884&l=1')">
@@ -2840,7 +2857,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Разработчик голосовых и чат-ботов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=20075&w=204884&l=2')">
@@ -2848,7 +2865,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Быстрый старт за 3 часа</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=20075&w=204884&l=5')">
@@ -2856,7 +2873,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Быстрые деньги на удалёнке</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=25382&w=204884&l=5')">
@@ -2864,7 +2881,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3> Первые деньги на нейросетях</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=25382&w=204884&l=6')">
@@ -2872,7 +2889,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Начни зарабатывать на нейросетях</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=25814&w=204884&l=1')">
@@ -2880,7 +2897,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Нейро-Дизайнер с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=26092&w=204884&l=1')">
@@ -2888,7 +2905,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Нейро.Диз</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=26092&w=204884&l=2')">
@@ -2896,7 +2913,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Начни зарабатывать на нейросетях</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=33424&w=204884&l=1')">
@@ -2904,7 +2921,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Можно ли делать реальные заказы на нейросетях?</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=33424&w=204884&l=2')">
@@ -2912,7 +2929,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как стать менеджером маркетплейсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=38489&w=204884&l=3')">
@@ -2920,7 +2937,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Менеджер по маркетплейсам</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=38489&w=204884&l=4')">
@@ -2928,7 +2945,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Нейрокреатор 2.0 — новый уровень творчества и заработка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41593&w=204884&l=1')">
@@ -2936,7 +2953,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Освойте технологию GPT'S агентов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=42417&w=204884&l=1')">
@@ -2944,7 +2961,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Инженер по автоматизации</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=44848&w=204884&l=9')">
@@ -2952,7 +2969,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курсы ораторского мастерства</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=45674&w=204884&l=5')">
@@ -2960,7 +2977,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Бестселлер за 90 дней</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=46416&w=204884&l=1')">
@@ -2968,7 +2985,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Введение в профессию Технический специалист по чат-ботам</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=46464&w=204884&l=1')">
@@ -2976,7 +2993,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Технический специалист по работе с чат-ботами</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=46464&w=204884&l=2')">
@@ -2984,7 +3001,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Креативные видео на телефон</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=48606&w=204884&l=2')">
@@ -2992,7 +3009,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Предметная видеосъемка ﻿на телефон</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=48606&w=204884&l=4')">
@@ -3000,7 +3017,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Съемка и монтаж трендовых видео</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=48606&w=204884&l=5')">
@@ -3008,7 +3025,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как легко писать тексты</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54715&w=204884&l=1')">
@@ -3016,7 +3033,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Деньги на фотостоках</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=57840&w=204884&l=3')">
@@ -3024,7 +3041,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>8 уроков до вашего первого дохода с нейросетями</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=60205&w=204884&l=1')">
@@ -3032,7 +3049,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Менеджер проектов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=10')">
@@ -3040,7 +3057,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Бизнес-ассистент</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=100')">
@@ -3048,7 +3065,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Excel и Google-таблицы: от новичка до эксперта</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=107')">
@@ -3056,7 +3073,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Excel для работы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=108')">
@@ -3064,7 +3081,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Директор по аналитике</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=110')">
@@ -3072,7 +3089,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Директор по закупкам</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=112')">
@@ -3080,7 +3097,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Директор проектного офиса</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=117')">
@@ -3088,7 +3105,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Графический дизайнер</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=12')">
@@ -3096,7 +3113,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>MS Office: Excel, Word и PowerPoint</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=13')">
@@ -3104,7 +3121,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс MBA: Лидерство</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=17')">
@@ -3112,7 +3129,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>HR бизнес-партнёр</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=18')">
@@ -3120,7 +3137,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Продюсер онлайн-курсов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=19')">
@@ -3128,7 +3145,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Бухгалтер</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=21')">
@@ -3136,7 +3153,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Главный бухгалтер</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=22')">
@@ -3144,7 +3161,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс Power BI</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=35')">
@@ -3152,7 +3169,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс BI-аналитик</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=36')">
@@ -3160,7 +3177,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>SQL с нуля для анализа данных</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=38')">
@@ -3168,7 +3185,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Финансовый аналитик</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=39')">
@@ -3176,7 +3193,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Excel и Google-таблицы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=40')">
@@ -3184,7 +3201,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Копирайтер</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=42')">
@@ -3192,7 +3209,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Финансовое моделирование</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=45')">
@@ -3200,7 +3217,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>HR-аналитика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=47')">
@@ -3208,7 +3225,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>1C: Бухгалтерия 8.3</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=48')">
@@ -3216,7 +3233,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>1C: Бухгалтерия 8.3 и Excel</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=49')">
@@ -3224,7 +3241,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Интернет-маркетолог</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=5')">
@@ -3232,7 +3249,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Python-разработчик</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=55')">
@@ -3240,7 +3257,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>MBA: Digital-бизнес</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=57')">
@@ -3248,7 +3265,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Тестировщик ПО</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=59')">
@@ -3256,7 +3273,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Веб-дизайнер</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=6')">
@@ -3264,7 +3281,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Руководитель отдела продаж</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=60')">
@@ -3272,7 +3289,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Дизайнер карточек на маркетплейсах</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=65')">
@@ -3280,7 +3297,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Менеджер по работе с маркетплейсами</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=7')">
@@ -3288,7 +3305,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Revit Autodesk для дизайнеров интерьера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=76')">
@@ -3296,7 +3313,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс Основы Python</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=77')">
@@ -3304,7 +3321,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>IT-специалист с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=81')">
@@ -3312,7 +3329,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Нейросети на практике: для себя, работы и бизнеса</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=82')">
@@ -3320,7 +3337,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Стратегическое управление</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=83')">
@@ -3328,7 +3345,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Директор онлайн-школы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=88')">
@@ -3336,7 +3353,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Дизайн сайтов. Tilda + Figma</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=90')">
@@ -3344,7 +3361,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Инвестиционный аналитик</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=93')">
@@ -3352,7 +3369,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>3D-визуализатор интерьеров</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=95')">
@@ -3360,7 +3377,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Продвижение для онлайн-репетитора</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61701&w=204884&l=99')">
@@ -3368,7 +3385,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Создание чеклистов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7005&w=204884&l=10')">
@@ -3376,7 +3393,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Основы работы с Photoshop</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7005&w=204884&l=16')">
@@ -3384,7 +3401,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Файлы SMM-менеджера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7005&w=204884&l=2')">
@@ -3392,7 +3409,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Работа на биржах фриланса</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7005&w=204884&l=3')">
@@ -3400,7 +3417,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Свой канал на Яндекс Дзен</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7005&w=204884&l=4')">
@@ -3408,7 +3425,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Чат-боты в мессенджерах</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=7005&w=204884&l=9')">
@@ -3416,7 +3433,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как получать от 50 000 руб. на партнёрских программах</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=73403&w=204884&l=1')">
@@ -3424,7 +3441,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Метод ТСП</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=73403&w=204884&l=2')">
@@ -3432,7 +3449,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Как использовать Нейросети, чтобы похудеть, наладить сон, питание и справляться со стрессом</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=74785&w=204884&l=1')">
@@ -3440,7 +3457,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Курс повышения квалификации</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=77132&w=204884&l=1')">
@@ -3448,7 +3465,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Нейросети для разрешения задач</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=78519&w=204884&l=2')">
@@ -3456,7 +3473,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Профессия будущего: Специалист по нейросетям</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=78519&w=204884&l=3')">
@@ -3464,7 +3481,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Автовебинар Специалист по нейросетям</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=78519&w=204884&l=7')">
@@ -3472,7 +3489,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс 3D Max</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=1')">
@@ -3480,7 +3497,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс по вязанию спицами</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=12')">
@@ -3488,7 +3505,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс по маркетингу</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=18')">
@@ -3496,7 +3513,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс фортепиано</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=2')">
@@ -3504,7 +3521,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс по шитью из фетра</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=27')">
@@ -3512,7 +3529,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс по макраме</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=31')">
@@ -3520,7 +3537,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс по гитаре</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=4')">
@@ -3528,7 +3545,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс по программированию для начинающих</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=6')">
@@ -3536,7 +3553,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Онлайн-курс по редактуре</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=87177&w=204884&l=9')">
@@ -3544,7 +3561,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Заработок удалённо</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=88433&w=204884&l=1')">
@@ -3552,7 +3569,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Деньги на нейросетях</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=94510&w=204884&l=1')">
@@ -3560,7 +3577,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Основы дизайна презентаций</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98184&w=204884&l=2')">
@@ -3568,7 +3585,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-1">
     <h3>Бестселлер за 60 дней</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98233&w=204884&l=1')">
@@ -3582,7 +3599,7 @@ h2{
 <div id="cat_13" class="hidden fade">
   <h2>Хобби и увлечения</h2>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как вязать крючком миниатюрные игрушки</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=12997&w=204884&l=1')">
@@ -3590,7 +3607,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Попробуй себя в модельном бизнесе</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=13097&w=204884&l=1')">
@@ -3598,7 +3615,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Интерьерная живопись</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=18244&w=204884&l=2')">
@@ -3606,7 +3623,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Управление в симуляторе</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=24601&w=204884&l=2')">
@@ -3614,7 +3631,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Реалистичный рисунок карандашом с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=27969&w=204884&l=1')">
@@ -3622,7 +3639,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как превратить обычные листья цветов и деревьев в прибыльное хобби"</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=31403&w=204884&l=2')">
@@ -3630,7 +3647,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Городской скетчинг</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=37846&w=204884&l=1')">
@@ -3638,7 +3655,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как приготовить полезный шоколад</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4059&w=204884&l=1')">
@@ -3646,7 +3663,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как быстро, без опыта стать востребованным онлайн турагентом</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41789&w=204884&l=5')">
@@ -3654,7 +3671,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Онлайн-курс по мобильной фотографии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=42483&w=204884&l=1')">
@@ -3662,7 +3679,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Онлайн-курс по рисованию аниме</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=42483&w=204884&l=2')">
@@ -3670,7 +3687,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как есть торты и оставаться в форме</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4696&w=204884&l=1')">
@@ -3678,7 +3695,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>10 законов низкокалорийных десертов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=4696&w=204884&l=2')">
@@ -3686,7 +3703,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Секреты сырных конфет и десертов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=50524&w=204884&l=1')">
@@ -3694,7 +3711,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Кисломолочные продукты с пользой для здоровья</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=55801&w=204884&l=3')">
@@ -3702,7 +3719,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Тарт груша, ваниль, шоколад</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=55955&w=204884&l=1')">
@@ -3710,7 +3727,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как научиться плести изделия для интерьера</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=57405&w=204884&l=1')">
@@ -3718,7 +3735,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Домашний сыровар</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6020&w=204884&l=1')">
@@ -3726,7 +3743,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как приготовить 2 вида сыра за 30 минут</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6020&w=204884&l=4')">
@@ -3734,7 +3751,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Готовим сыр дома</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6020&w=204884&l=6')">
@@ -3742,7 +3759,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Домашний сыр за 30 минут</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6020&w=204884&l=7')">
@@ -3750,7 +3767,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Муссовый торт: Ежевика Брауни</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61380&w=204884&l=1')">
@@ -3758,7 +3775,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Малиновое муссовое пирожное</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61380&w=204884&l=2')">
@@ -3766,7 +3783,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Создание муссовых тортов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=61380&w=204884&l=3')">
@@ -3774,7 +3791,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Самые вкусные сыры</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=6172&w=204884&l=1')">
@@ -3782,7 +3799,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Интерьерный художник</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=66550&w=204884&l=1')">
@@ -3790,7 +3807,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Дубайские десерты</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=68989&w=204884&l=1')">
@@ -3798,7 +3815,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Дополнительное профессиональное образование по БАС</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=72148&w=204884&l=2')">
@@ -3806,7 +3823,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Секретный пышной выпечки</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=73255&w=204884&l=1')">
@@ -3814,7 +3831,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Идеальная выпечка</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=73255&w=204884&l=2')">
@@ -3822,7 +3839,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Основы бытовой реставрации мебели</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=82049&w=204884&l=1')">
@@ -3830,7 +3847,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Основы столярного дела</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=82049&w=204884&l=2')">
@@ -3838,7 +3855,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Основы кожевенного дела</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=82049&w=204884&l=3')">
@@ -3846,7 +3863,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Практическое руководство: мишка Тедди с нуля до первой продажи</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=95920&w=204884&l=1')">
@@ -3854,7 +3871,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Как с 0 научиться плести корзины</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98123&w=204884&l=1')">
@@ -3862,7 +3879,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Плетение корзин из бумажной лозы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98123&w=204884&l=2')">
@@ -3870,7 +3887,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>С 0 до первого изделия</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98123&w=204884&l=3')">
@@ -3878,7 +3895,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-2">
     <h3>Тонкости приготовления хлеба</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=9838&w=204884&l=1')">
@@ -3892,7 +3909,7 @@ h2{
 <div id="cat_14" class="hidden fade">
   <h2>Школа и институт</h2>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Подготовка к ЕГЭ</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2445&w=204884&l=3')">
@@ -3900,7 +3917,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>История</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2445&w=204884&l=4')">
@@ -3908,7 +3925,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Биология</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2445&w=204884&l=6')">
@@ -3916,7 +3933,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Физика</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=2445&w=204884&l=7')">
@@ -3924,7 +3941,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-3">
     <h3>Программирования на Python</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=44005&w=204884&l=5')">
@@ -3938,7 +3955,7 @@ h2{
 <div id="cat_15" class="hidden fade">
   <h2>Эзотерика</h2>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Академия нумерологии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=16416&w=204884&l=1')">
@@ -3946,7 +3963,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Диагностика маятником</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=17869&w=204884&l=1')">
@@ -3954,7 +3971,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Курсы от Янины Шляпниковой</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=20571&w=204884&l=1')">
@@ -3962,7 +3979,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Ба Цзы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=21505&w=204884&l=1')">
@@ -3970,7 +3987,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Курсы от Юлии Серягиной</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=24859&w=204884&l=1')">
@@ -3978,7 +3995,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Пять ключей к изобилию</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=26702&w=204884&l=1')">
@@ -3986,7 +4003,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Тайная сила псалмов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=33589&w=204884&l=1')">
@@ -3994,7 +4011,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Нумерологические карты</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=33863&w=204884&l=1')">
@@ -4002,7 +4019,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Автовебинар Numero карты</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=33863&w=204884&l=3')">
@@ -4010,7 +4027,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как читать расклады таро без ошибок</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=34013&w=204884&l=2')">
@@ -4018,7 +4035,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Мастерство Магии</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=3548&w=204884&l=1')">
@@ -4026,7 +4043,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Секреты профессионального рунолога</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=38409&w=204884&l=3')">
@@ -4034,7 +4051,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Вселенная таро. Основы: путь Дурака и тайны Арканов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41435&w=204884&l=4')">
@@ -4042,7 +4059,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Вселенная Таро: 4 шага к глубокому пониманию Таро для начинающих и не только</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41435&w=204884&l=5')">
@@ -4050,7 +4067,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Самостоятельная очистка кармы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41538&w=204884&l=1')">
@@ -4058,7 +4075,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Самостоятельная очистка кармы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=41538&w=204884&l=3')">
@@ -4066,7 +4083,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Комплексное омоложение для женщин после 40</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=44270&w=204884&l=1')">
@@ -4074,7 +4091,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Профессиональное применение свечей в эзотерике</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=52515&w=204884&l=1')">
@@ -4082,7 +4099,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Новейшие нумерологические тактики</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=52639&w=204884&l=2')">
@@ -4090,7 +4107,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Нейроформулы благополучия</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=52639&w=204884&l=3')">
@@ -4098,7 +4115,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Маятник как инструмент общения</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54906&w=204884&l=1')">
@@ -4106,7 +4123,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как подобрать маятник</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=54906&w=204884&l=2')">
@@ -4114,7 +4131,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Доступ в Эдем</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=59978&w=204884&l=1')">
@@ -4122,7 +4139,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Аккумулятор личной силы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=59978&w=204884&l=2')">
@@ -4130,7 +4147,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Сглазы и порчи: от А до Я</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=66071&w=204884&l=1')">
@@ -4138,7 +4155,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Магические свечи своими руками</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=76183&w=204884&l=1')">
@@ -4146,7 +4163,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Нумеролог с нуля</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=76859&w=204884&l=1')">
@@ -4154,7 +4171,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как обустроить дом</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=83610&w=204884&l=1')">
@@ -4162,7 +4179,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Бесплатный марафон для начинающих тарологов</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90806&w=204884&l=1')">
@@ -4170,7 +4187,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Мини-курс "Таро"</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90806&w=204884&l=2')">
@@ -4178,7 +4195,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Марафон "Начинающий таролог"</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90806&w=204884&l=3')">
@@ -4186,7 +4203,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Курс "Таро с 0 до профи"</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=90806&w=204884&l=4')">
@@ -4194,7 +4211,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Все о рунах</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=93162&w=204884&l=1')">
@@ -4202,7 +4219,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Таро для начинающих</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98100&w=204884&l=1')">
@@ -4210,7 +4227,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Мой дом по фэншуй</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98370&w=204884&l=1')">
@@ -4218,7 +4235,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Таро для души</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98561&w=204884&l=2')">
@@ -4226,7 +4243,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>ЗАКРЫТОЕ ОБРАЗОВАТЕЛЬНОЕ СООБЩЕСТВО «КСТ»</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98561&w=204884&l=3')">
@@ -4234,7 +4251,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Как включить внутреннюю энергию для здоровья и силы</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98561&w=204884&l=4')">
@@ -4242,7 +4259,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Узнай причину популярности ТАРО в повседневной жизни</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98561&w=204884&l=5')">
@@ -4250,7 +4267,7 @@ h2{
     </button>
   </div>
 
-  <div class="card">
+  <div class="card gradient-4">
     <h3>Таро без страха: начни видеть, а не угадывать</h3>
     <button class="button-primary"
       onclick="window.open('https://best-trening.ru/?o=98561&w=204884&l=6')">
@@ -4266,30 +4283,19 @@ h2{
 <script>
 function openSection(id){
   document.getElementById("categories").classList.add("hidden");
-
   document.querySelectorAll("[id^='cat_']").forEach(el=>{
     el.classList.add("hidden");
   });
-
   document.getElementById(id).classList.remove("hidden");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function goBack(){
   document.querySelectorAll("[id^='cat_']").forEach(el=>{
     el.classList.add("hidden");
   });
-
   document.getElementById("categories").classList.remove("hidden");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 </script>
 
