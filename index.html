@@ -39,7 +39,7 @@ h1,h2,h3{
   padding:18px;
   border-radius:18px;
   background:linear-gradient(135deg,#7f5af0,#2cb1ff);
-  min-height:120px;
+  min-height:170px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -47,7 +47,7 @@ h1,h2,h3{
 }
 
 .card h3{
-  font-size:15px;
+  font-size:18px;
   line-height:1.3;
   word-break:break-word;
 }
@@ -84,17 +84,7 @@ h1,h2,h3{
   .card{min-height:160px;}
   .card h3{font-size:16px;}
 }
-
-.main-cta{
-  padding:18px;
-  font-size:18px;
-  font-weight:700;
-  background:linear-gradient(135deg,#8e2de2,#ff2e88);
-  color:#fff;
-  box-shadow:0 10px 25px rgba(200,0,255,0.35);
-}
 </style>
-
 </head>
 
 <body>
@@ -119,7 +109,7 @@ h1,h2,h3{
     В каталоге собраны десятки других вариантов — вы точно найдёте решение под себя.
   </div>
 
-  <button class="button main-cta" onclick="showCatalog()">Смотреть все курсы</button>
+  <button class="button" onclick="showCatalog()">Смотреть все курсы</button>
 </div>
 
 <div id="catalog" class="hidden">
@@ -2199,65 +2189,51 @@ function showResult(){
   document.getElementById("result").classList.remove("hidden");
 
   const gender = answers[0];
-  let pool = [];
+  let selected = [];
 
-  // собираем все курсы
-  for(let cat in courses){
-    pool = pool.concat(courses[cat]);
-  }
-
-  // фильтрация по полу
-  if(gender === "Мужчина"){
-    pool = pool.filter(c => !maleExcludeKeywords.some(k =>
-      c.title.toLowerCase().includes(k)
-    ));
+  function getRandomFromCategory(catName){
+    if(!courses[catName]) return null;
+    const arr = courses[catName];
+    return arr[Math.floor(Math.random() * arr.length)];
   }
 
   if(gender === "Женщина"){
-    // сначала общая выборка без ограничений
-    let esoteric = pool.filter(c =>
-      c.title.toLowerCase().includes("таро") ||
-      c.title.toLowerCase().includes("эзотер") ||
-      c.title.toLowerCase().includes("астро")
-    );
+    const cats = ["Бизнес и финансы","Бьюти профессии","Эзотерика"];
+    cats.forEach(cat=>{
+      const course = getRandomFromCategory(cat);
+      if(course) selected.push(course);
+    });
+  }
 
-    // перемешка
-    pool = pool.sort(()=>0.5-Math.random());
+  if(gender === "Мужчина"){
+    const cats = ["Бизнес и финансы","Удалённая работа"];
+    cats.forEach(cat=>{
+      const course = getRandomFromCategory(cat);
+      if(course) selected.push(course);
+    });
+  }
 
-    let selected = [];
+  // перемешиваем
+  selected = selected.sort(()=>0.5 - Math.random());
 
-    // 1-2 эзотерики обязательно
-    if(esoteric.length){
-      esoteric = esoteric.sort(()=>0.5-Math.random());
-      selected = selected.concat(esoteric.slice(0, Math.floor(Math.random()*2)+1));
-    }
+  // если вдруг меньше 2 — добираем из разрешённых категорий
+  if(selected.length < 2){
+    let fallbackCats = gender === "Женщина"
+      ? ["Бизнес и финансы","Бьюти профессии","Эзотерика"]
+      : ["Бизнес и финансы","Удалённая работа"];
 
-    // добираем остальными
-    pool.forEach(c=>{
-      if(selected.length<3 && !selected.includes(c)){
-        selected.push(c);
+    fallbackCats.forEach(cat=>{
+      if(selected.length < 3){
+        const c = getRandomFromCategory(cat);
+        if(c && !selected.includes(c)) selected.push(c);
       }
     });
-
-    pool = selected;
-  } else {
-    pool = pool.sort(()=>0.5-Math.random());
   }
 
-  // гарантия 2-3
-  if(pool.length < 2){
-    let all = [];
-    for(let cat in courses){
-      all = all.concat(courses[cat]);
-    }
-    all = all.sort(()=>0.5-Math.random());
-    pool = pool.concat(all);
-  }
-
-  let final = pool.slice(0,3);
+  selected = selected.slice(0,3);
 
   let recHtml = "";
-  final.forEach(c=>{
+  selected.forEach(c=>{
     recHtml+=`
       <div class="card">
         <h3>${c.title}</h3>
@@ -2269,18 +2245,6 @@ function showResult(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-
-
-const catalogGradients = [
-"linear-gradient(135deg,#4e73df,#1cc88a)",
-"linear-gradient(135deg,#9c27b0,#ff6ec4)",
-"linear-gradient(135deg,#36b9cc,#3a7bd5)",
-"linear-gradient(135deg,#ff4b2b,#ff416c)",
-"linear-gradient(135deg,#667eea,#764ba2)",
-"linear-gradient(135deg,#43cea2,#185a9d)",
-"linear-gradient(135deg,#f093fb,#f5576c)",
-"linear-gradient(135deg,#ff9966,#ff5e62)"
-];
 
 function showCatalog(){
   document.getElementById("result").classList.add("hidden");
@@ -2295,11 +2259,6 @@ function showCatalog(){
       </div>`;
   }
   document.getElementById("catalogGrid").innerHTML=html;
-
-  const cards = document.querySelectorAll("#catalogGrid .card");
-  cards.forEach((card,index)=>{
-    card.style.background = catalogGradients[index % catalogGradients.length];
-  });
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
