@@ -39,7 +39,7 @@ h1,h2,h3{
   padding:18px;
   border-radius:18px;
   background:linear-gradient(135deg,#7f5af0,#2cb1ff);
-  min-height:170px;
+  min-height:120px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -47,7 +47,7 @@ h1,h2,h3{
 }
 
 .card h3{
-  font-size:18px;
+  font-size:15px;
   line-height:1.3;
   word-break:break-word;
 }
@@ -84,7 +84,17 @@ h1,h2,h3{
   .card{min-height:160px;}
   .card h3{font-size:16px;}
 }
+
+.main-cta{
+  padding:18px;
+  font-size:18px;
+  font-weight:700;
+  background:linear-gradient(135deg,#8e2de2,#ff2e88);
+  color:#fff;
+  box-shadow:0 10px 25px rgba(200,0,255,0.35);
+}
 </style>
+
 </head>
 
 <body>
@@ -109,7 +119,7 @@ h1,h2,h3{
     В каталоге собраны десятки других вариантов — вы точно найдёте решение под себя.
   </div>
 
-  <button class="button" onclick="showCatalog()">Смотреть все курсы</button>
+  <button class="button main-cta" onclick="showCatalog()">Смотреть все курсы</button>
 </div>
 
 <div id="catalog" class="hidden">
@@ -2184,6 +2194,7 @@ function isMaleBlocked(title){
 }
 
 
+
 function showResult(){
   document.getElementById("loading").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
@@ -2191,40 +2202,42 @@ function showResult(){
   const gender = answers[0];
   let selected = [];
 
-  function getRandomFromCategory(catName){
-    if(!courses[catName]) return null;
-    const arr = courses[catName];
+  function getRandom(cat){
+    if(!courses[cat] || courses[cat].length === 0) return null;
+    const arr = courses[cat];
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
   if(gender === "Женщина"){
-    const cats = ["Бизнес и финансы","Бьюти профессии","Эзотерика"];
-    cats.forEach(cat=>{
-      const course = getRandomFromCategory(cat);
-      if(course) selected.push(course);
-    });
+    const c1 = getRandom("Бизнес и финансы");
+    const c2 = getRandom("Бьюти-профессии");
+    const c3 = getRandom("Эзотерика");
+
+    if(c1) selected.push(c1);
+    if(c2) selected.push(c2);
+    if(c3) selected.push(c3);
   }
 
   if(gender === "Мужчина"){
-    const cats = ["Бизнес и финансы","Удалённая работа"];
-    cats.forEach(cat=>{
-      const course = getRandomFromCategory(cat);
-      if(course) selected.push(course);
-    });
+    const c1 = getRandom("Бизнес и финансы");
+    const c2 = getRandom("Удалённая работа");
+
+    if(c1) selected.push(c1);
+    if(c2) selected.push(c2);
   }
 
-  // перемешиваем
-  selected = selected.sort(()=>0.5 - Math.random());
+  // Перемешиваем чтобы порядок не был одинаковый
+  selected = selected.sort(() => 0.5 - Math.random());
 
-  // если вдруг меньше 2 — добираем из разрешённых категорий
+  // Гарантия 2-3
   if(selected.length < 2){
     let fallbackCats = gender === "Женщина"
-      ? ["Бизнес и финансы","Бьюти профессии","Эзотерика"]
+      ? ["Бизнес и финансы","Бьюти-профессии","Эзотерика"]
       : ["Бизнес и финансы","Удалённая работа"];
 
     fallbackCats.forEach(cat=>{
       if(selected.length < 3){
-        const c = getRandomFromCategory(cat);
+        const c = getRandom(cat);
         if(c && !selected.includes(c)) selected.push(c);
       }
     });
@@ -2234,7 +2247,7 @@ function showResult(){
 
   let recHtml = "";
   selected.forEach(c=>{
-    recHtml+=`
+    recHtml += `
       <div class="card">
         <h3>${c.title}</h3>
         <button class="button" onclick="window.open('${c.url}')">Перейти к курсу</button>
@@ -2245,6 +2258,19 @@ function showResult(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
+
+
+
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
 
 function showCatalog(){
   document.getElementById("result").classList.add("hidden");
@@ -2259,6 +2285,11 @@ function showCatalog(){
       </div>`;
   }
   document.getElementById("catalogGrid").innerHTML=html;
+
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
