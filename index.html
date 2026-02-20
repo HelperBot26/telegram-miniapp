@@ -59,11 +59,9 @@ h1,h2,h3{
   border:none;
   border-radius:14px;
   margin-top:14px;
-  background:linear-gradient(135deg,#8e2de2,#ff2e88);
-  color:#fff;
-  font-size:18px;
-  font-weight:700;
-  box-shadow:0 10px 25px rgba(200,0,255,0.4);
+  background:#fff;
+  color:#111;
+  font-weight:600;
   cursor:pointer;
 }
 
@@ -87,7 +85,16 @@ h1,h2,h3{
   .card{min-height:160px;}
   .card h3{font-size:16px;}
 }
+
+.main-cta{
+  background:linear-gradient(135deg,#8e2de2,#ff2e88) !important;
+  color:#fff !important;
+  font-size:18px;
+  font-weight:700;
+  box-shadow:0 10px 25px rgba(200,0,255,0.4);
+}
 </style>
+
 </head>
 
 <body>
@@ -112,7 +119,7 @@ h1,h2,h3{
     В каталоге собраны десятки других вариантов — вы точно найдёте решение под себя.
   </div>
 
-  <button class="button" onclick="showCatalog()">Смотреть все курсы</button>
+  <button class="button main-cta" onclick="showCatalog()">Смотреть все курсы</button>
 </div>
 
 <div id="catalog" class="hidden">
@@ -2172,7 +2179,26 @@ function renderQuestion(){
 function answer(opt){
   answers.push(opt);
   current++;
-  if(current<questions.length) renderQuestion();
+  if(current<questions.length) 
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
+
+function applyCatalogColors(){
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
+}
+
+renderQuestion();
   else startAnalysis();
 }
 
@@ -2220,18 +2246,6 @@ function showResult(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-
-const catalogGradients = [
-"linear-gradient(135deg,#4e73df,#1cc88a)",
-"linear-gradient(135deg,#9c27b0,#ff6ec4)",
-"linear-gradient(135deg,#36b9cc,#3a7bd5)",
-"linear-gradient(135deg,#ff4b2b,#ff416c)",
-"linear-gradient(135deg,#667eea,#764ba2)",
-"linear-gradient(135deg,#43cea2,#185a9d)",
-"linear-gradient(135deg,#f093fb,#f5576c)",
-"linear-gradient(135deg,#ff9966,#ff5e62)"
-];
-
 function showCatalog(){
   document.getElementById("result").classList.add("hidden");
   document.getElementById("catalog").classList.remove("hidden");
@@ -2244,7 +2258,7 @@ function showCatalog(){
         <button class="button" onclick="openCategory('${cat}')">Открыть</button>
       </div>`;
   }
-  document.getElementById("catalogGrid").innerHTML=html;
+  document.getElementById("catalogGrid").innerHTML=html; applyCatalogColors();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -2270,6 +2284,25 @@ function backToCatalog(){
   document.getElementById("categoryView").classList.add("hidden");
   document.getElementById("catalog").classList.remove("hidden");
   window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+const catalogGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
+
+function applyCatalogColors(){
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card,index)=>{
+    card.style.background = catalogGradients[index % catalogGradients.length];
+  });
 }
 
 renderQuestion();
