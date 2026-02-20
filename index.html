@@ -59,7 +59,7 @@ h1,h2,h3{
   border:none;
   border-radius:14px;
   margin-top:14px;
-  background:linear-gradient(135deg,#ff6a00,#ff2e63);
+  background:linear-gradient(135deg,#8e2de2,#ff2e88);
   color:#fff;
   font-size:18px;
   font-weight:700;
@@ -2176,7 +2176,7 @@ function renderQuestion(){
   let q=questions[current];
   let html="<h2>"+q.q+"</h2><div class='grid'>";
   q.options.forEach(opt=>{
-    html+=`<div class="card" style="background:'+randomGradient()+'"><button class="button" onclick="answer('${opt}')">${opt}</button></div>`;
+    html+=`<div class="card"><button class="button" onclick="answer('${opt}')">${opt}</button></div>`;
   });
   html+="</div>";
   document.getElementById("question").innerHTML=html;
@@ -2185,7 +2185,27 @@ function renderQuestion(){
 function answer(opt){
   answers.push(opt);
   current++;
-  if(current<questions.length) renderQuestion();
+  if(current<questions.length) 
+const categoryGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#1e3c72,#2a5298)",
+"linear-gradient(135deg,#a18cd1,#fbc2eb)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
+
+function applyCatalogColors(){
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card, index)=>{
+    card.style.background = categoryGradients[index % categoryGradients.length];
+  });
+}
+renderQuestion();
   else startAnalysis();
 }
 
@@ -2235,7 +2255,7 @@ function showResult(){
   let recHtml="";
   selected.forEach(c=>{
     recHtml+=`
-      <div class="card" style="background:'+randomGradient()+'">
+      <div class="card">
         <h3>${c.title}</h3>
         <button class="button" onclick="window.open('${c.url}')">Перейти к курсу</button>
       </div>`;
@@ -2252,12 +2272,12 @@ function showCatalog(){
   let html="";
   for(let cat in courses){
     html+=`
-      <div class="card" style="background:'+randomGradient()+'">
+      <div class="card">
         <h3>${cat}</h3>
         <button class="button" onclick="openCategory('${cat}')">Открыть</button>
       </div>`;
   }
-  document.getElementById("catalogGrid").innerHTML=html;
+  document.getElementById("catalogGrid").innerHTML=html; applyCatalogColors();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -2269,7 +2289,7 @@ function openCategory(cat){
   let html="";
   courses[cat].forEach(c=>{
     html+=`
-      <div class="card" style="background:'+randomGradient()+'">
+      <div class="card">
         <h3>${c.title}</h3>
         <button class="button" onclick="window.open('${c.url}')">Перейти к курсу</button>
       </div>`;
@@ -2285,6 +2305,26 @@ function backToCatalog(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
+
+const categoryGradients = [
+"linear-gradient(135deg,#4e73df,#1cc88a)",
+"linear-gradient(135deg,#9c27b0,#ff6ec4)",
+"linear-gradient(135deg,#36b9cc,#3a7bd5)",
+"linear-gradient(135deg,#ff4b2b,#ff416c)",
+"linear-gradient(135deg,#1e3c72,#2a5298)",
+"linear-gradient(135deg,#a18cd1,#fbc2eb)",
+"linear-gradient(135deg,#667eea,#764ba2)",
+"linear-gradient(135deg,#f093fb,#f5576c)",
+"linear-gradient(135deg,#43cea2,#185a9d)",
+"linear-gradient(135deg,#ff9966,#ff5e62)"
+];
+
+function applyCatalogColors(){
+  const cards = document.querySelectorAll("#catalogGrid .card");
+  cards.forEach((card, index)=>{
+    card.style.background = categoryGradients[index % categoryGradients.length];
+  });
+}
 renderQuestion();
 
 </script>
