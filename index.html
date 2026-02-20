@@ -3,21 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MiniApp FINAL STABLE</title>
+<title>MiniApp FINAL CLEAN</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
 *{box-sizing:border-box;}
-
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   background:linear-gradient(180deg,#0f1020,#14162a);
   color:#fff;
 }
-
 .container{padding:20px 14px 60px;max-width:1000px;margin:0 auto;}
-
 h1,h2,h3{text-align:center;margin:0 0 16px;}
 
 .grid{
@@ -27,33 +24,15 @@ h1,h2,h3{text-align:center;margin:0 0 16px;}
 }
 
 .card{
-  padding:18px;
-  border-radius:20px;
-  min-height:160px;
+  padding:16px;
+  border-radius:18px;
+  min-height:150px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
   text-align:center;
-  transition:0.25s;
+  background:linear-gradient(135deg,#7f5af0,#2cb1ff);
 }
-
-.card:hover{transform:translateY(-4px);}
-
-.card h3{
-  font-size:16px;
-  line-height:1.4;
-  flex-grow:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.gradient1{background:linear-gradient(135deg,#7f5af0,#2cb1ff);}
-.gradient2{background:linear-gradient(135deg,#ff6ec7,#7873f5);}
-.gradient3{background:linear-gradient(135deg,#2cb1ff,#5f72ff);}
-.gradient4{background:linear-gradient(135deg,#f857a6,#ff5858);}
-.gradient5{background:linear-gradient(135deg,#00c6ff,#0072ff);}
-.gradient6{background:linear-gradient(135deg,#8e2de2,#4a00e0);}
 
 .button{
   width:100%;
@@ -73,7 +52,7 @@ h1,h2,h3{text-align:center;margin:0 0 16px;}
   font-weight:700;
   border-radius:18px;
   background:linear-gradient(135deg,#ff00cc,#3333ff);
-  box-shadow:0 0 30px rgba(120,80,255,0.7);
+  box-shadow:0 0 25px rgba(120,80,255,0.7);
 }
 
 .hidden{display:none;}
@@ -88,7 +67,9 @@ h1,h2,h3{text-align:center;margin:0 0 16px;}
   <div id="question"></div>
 </div>
 
-<div id="loading" class="hidden"><h2>Анализируем ответы...</h2></div>
+<div id="loading" class="hidden">
+  <h2>Анализируем ответы...</h2>
+</div>
 
 <div id="result" class="hidden">
   <h2>🔥 Рекомендации:</h2>
@@ -110,6 +91,7 @@ h1,h2,h3{text-align:center;margin:0 0 16px;}
 </div>
 
 <script>
+
 const courses = {
   "Бизнес и финансы": [
     {
@@ -2122,7 +2104,6 @@ const courses = {
 };
 
 const maleBlock = ["маникюр","ресниц","визаж","бров","космет","массаж лица","таро","астро","эзотер","для женщин"];
-const gradients = ["gradient1","gradient2","gradient3","gradient4","gradient5","gradient6"];
 
 const questions = [
   {q:"Ваш пол?", options:["Женщина","Мужчина"]},
@@ -2141,8 +2122,8 @@ let current=0;
 function renderQuestion(){
   let q=questions[current];
   let html="<h2>"+q.q+"</h2><div class='grid'>";
-  q.options.forEach((opt,i)=>{
-    html+="<div class='card "+gradients[i % gradients.length]+"'><button class='button' onclick="answer('"+opt+"')">"+opt+"</button></div>";
+  q.options.forEach(opt=>{
+    html+="<div class='card'><button class='button' onclick="answer('"+opt+"')">"+opt+"</button></div>";
   });
   html+="</div>";
   document.getElementById("question").innerHTML=html;
@@ -2165,17 +2146,6 @@ function isBlocked(title){
   return maleBlock.some(k=>title.toLowerCase().includes(k));
 }
 
-function pickFromCategory(cat, gender, limit){
-  let result=[];
-  if(!courses[cat]) return result;
-  for(let c of courses[cat]){
-    if(gender==="Мужчина" && isBlocked(c.title)) continue;
-    result.push(c);
-    if(result.length>=limit) break;
-  }
-  return result;
-}
-
 function showResult(){
   document.getElementById("loading").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
@@ -2185,27 +2155,30 @@ function showResult(){
 
   let selected=[];
 
-  if(goal==="Доход") selected = pickFromCategory("Заработок",gender,2);
-  if(goal==="Стресс") selected = pickFromCategory("Психология",gender,2);
-  if(goal==="Новая профессия") selected = pickFromCategory("Профессии",gender,2);
-  if(goal==="Самореализация") selected = pickFromCategory("Саморазвитие",gender,2);
-
-  if(gender==="Женщина" && courses["Эзотерика"])
-    selected = pickFromCategory("Эзотерика","Женщина",1).concat(selected);
+  for(let cat in courses){
+    for(let c of courses[cat]){
+      if(selected.length>=3) break;
+      if(gender==="Мужчина" && isBlocked(c.title)) continue;
+      selected.push(c);
+    }
+  }
 
   if(selected.length<2){
     for(let cat in courses){
-      let more = pickFromCategory(cat,gender,3);
-      selected = selected.concat(more);
+      for(let c of courses[cat]){
+        if(gender==="Мужчина" && isBlocked(c.title)) continue;
+        selected.push(c);
+        if(selected.length>=3) break;
+      }
       if(selected.length>=3) break;
     }
   }
 
-  selected = selected.slice(0,3);
+  selected=selected.slice(0,3);
 
   let html="";
-  selected.forEach((c,i)=>{
-    html+="<div class='card "+gradients[i % gradients.length]+"'><h3>"+c.title+"</h3><button class='button' onclick="window.open('"+c.url+"')">Перейти</button></div>";
+  selected.forEach(c=>{
+    html+="<div class='card'><h3>"+c.title+"</h3><button class='button' onclick="window.open('"+c.url+"')">Перейти</button></div>";
   });
 
   document.getElementById("recommendations").innerHTML=html;
@@ -2216,10 +2189,8 @@ function showCatalog(){
   document.getElementById("catalog").classList.remove("hidden");
 
   let html="";
-  let i=0;
   for(let cat in courses){
-    html+="<div class='card "+gradients[i % gradients.length]+"'><h3>"+cat+"</h3><button class='button' onclick="openCategory('"+cat+"')">Открыть</button></div>";
-    i++;
+    html+="<div class='card'><h3>"+cat+"</h3><button class='button' onclick="openCategory('"+cat+"')">Открыть</button></div>";
   }
   document.getElementById("catalogGrid").innerHTML=html;
 }
@@ -2230,10 +2201,9 @@ function openCategory(cat){
   document.getElementById("categoryTitle").innerText=cat;
 
   let html="";
-  courses[cat].forEach((c,i)=>{
-    html+="<div class='card "+gradients[i % gradients.length]+"'><h3>"+c.title+"</h3><button class='button' onclick="window.open('"+c.url+"')">Перейти</button></div>";
+  courses[cat].forEach(c=>{
+    html+="<div class='card'><h3>"+c.title+"</h3><button class='button' onclick="window.open('"+c.url+"')">Перейти</button></div>";
   });
-
   document.getElementById("categoryCourses").innerHTML=html;
 }
 
@@ -2243,7 +2213,7 @@ function backToCatalog(){
 }
 
 renderQuestion();
-</script>
 
+</script>
 </body>
 </html>
