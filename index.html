@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Подбор курсов</title>
+<title>MiniApp FINAL FIX</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
@@ -22,24 +22,19 @@ body{
   margin:0 auto;
 }
 
-h1,h2,h3{
-  text-align:center;
-  margin:0 0 18px;
-}
-
-.progress{text-align:center;margin-bottom:15px;opacity:0.8;}
+h1,h2,h3{text-align:center;margin:0 0 16px;}
 
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:14px;
+  gap:12px;
 }
 
 .card{
-  padding:18px;
-  border-radius:18px;
+  padding:14px;
+  border-radius:16px;
   background:linear-gradient(135deg,#7f5af0,#2cb1ff);
-  min-height:170px;
+  min-height:120px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -47,43 +42,41 @@ h1,h2,h3{
 }
 
 .card h3{
-  font-size:18px;
+  font-size:16px;
   line-height:1.3;
   word-break:break-word;
 }
 
 .button{
   width:100%;
-  padding:12px;
+  padding:10px;
   border:none;
-  border-radius:14px;
-  margin-top:14px;
+  border-radius:12px;
   background:#fff;
   color:#111;
   font-weight:600;
   cursor:pointer;
 }
 
+.catalog-cta{
+  margin-top:30px;
+  padding:18px;
+  font-size:18px;
+  font-weight:700;
+  border-radius:18px;
+  background:linear-gradient(135deg,#ff00cc,#3333ff);
+  box-shadow:0 0 30px rgba(120,80,255,0.7);
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 20px rgba(120,80,255,0.6);}
+  50%{box-shadow:0 0 40px rgba(120,80,255,1);}
+  100%{box-shadow:0 0 20px rgba(120,80,255,0.6);}
+}
+
 .hidden{display:none;}
 
-.result-text{
-  margin:30px 0;
-  text-align:center;
-  line-height:1.6;
-  opacity:0.9;
-}
-
-.button-back{
-  margin-top:25px;
-  background:#1f2238;
-  color:#aaa;
-}
-
-@media(max-width:420px){
-  .grid{gap:10px;}
-  .card{min-height:160px;}
-  .card h3{font-size:16px;}
-}
 </style>
 </head>
 
@@ -92,7 +85,6 @@ h1,h2,h3{
 
 <div id="quiz">
   <h1>Ответьте на 8 вопросов</h1>
-  <div class="progress" id="progress"></div>
   <div id="question"></div>
 </div>
 
@@ -101,26 +93,22 @@ h1,h2,h3{
 </div>
 
 <div id="result" class="hidden">
-  <h2>🔥 Вот что вам подойдёт:</h2>
+  <h2>🔥 Рекомендации:</h2>
   <div id="recommendations" class="grid"></div>
-
-  <div class="result-text">
-    Это лучшие направления на основе ваших ответов.<br><br>
-    В каталоге собраны десятки других вариантов — вы точно найдёте решение под себя.
-  </div>
-
-  <button class="button" onclick="showCatalog()">Смотреть все курсы</button>
+  <button class="button catalog-cta" onclick="showCatalog()">
+    🔥 Смотреть все курсы
+  </button>
 </div>
 
 <div id="catalog" class="hidden">
-  <h1>Каталог курсов</h1>
+  <h1>Каталог</h1>
   <div id="catalogGrid" class="grid"></div>
 </div>
 
 <div id="categoryView" class="hidden">
   <h2 id="categoryTitle"></h2>
   <div id="categoryCourses" class="grid"></div>
-  <button class="button button-back" onclick="backToCatalog()">Назад</button>
+  <button class="button" onclick="backToCatalog()">Назад</button>
 </div>
 
 </div>
@@ -2138,25 +2126,23 @@ const courses = {
   ]
 };
 
-const femaleKeywords = ["для женщин","красот","бьюти","маникюр","массаж","визаж","ресниц","космет","таро","астро","эзотер"];
-const maleExcludeKeywords = ["для женщин","маникюр","ресниц","визаж","массаж лица"];
+const maleBlock = ["маникюр","ресниц","визаж","бров","космет","массаж лица","таро","астро","эзотер","для женщин"];
 
 const questions = [
   {q:"Ваш пол?", options:["Женщина","Мужчина"]},
   {q:"Возраст?", options:["До 25","25-34","35-44","45+"]},
-  {q:"Что хотите изменить?", options:["Доход","Самореализация","Стресс","Новая профессия"]},
-  {q:"Цель на год?", options:["Увеличить доход","Сменить профессию","Найти дело","Для себя"]},
-  {q:"Формат?", options:["Онлайн-профессия","Творчество","Работа с людьми","Гибкость"]},
-  {q:"Сколько времени готовы уделять?", options:["1-2 часа","3-5 часов","По выходным","Не уверен"]},
-  {q:"Готовы инвестировать?", options:["Да","Сомневаюсь","Ищу бесплатное"]},
-  {q:"Что важнее всего?", options:["Финансовая свобода","Баланс","Самореализация","Статус"]}
+  {q:"Цель?", options:["Доход","Стресс","Новая профессия","Самореализация"]},
+  {q:"Готовы инвестировать?", options:["Да","Нет"]},
+  {q:"Сколько времени?", options:["1-2 часа","3-5 часов"]},
+  {q:"Формат?", options:["Онлайн","Офлайн"]},
+  {q:"Приоритет?", options:["Деньги","Баланс"]},
+  {q:"Готовы начать сейчас?", options:["Да","Позже"]}
 ];
 
 let answers=[];
 let current=0;
 
 function renderQuestion(){
-  document.getElementById("progress").innerText="Вопрос "+(current+1)+" из 8";
   let q=questions[current];
   let html="<h2>"+q.q+"</h2><div class='grid'>";
   q.options.forEach(opt=>{
@@ -2176,11 +2162,11 @@ function answer(opt){
 function startAnalysis(){
   document.getElementById("quiz").classList.add("hidden");
   document.getElementById("loading").classList.remove("hidden");
-  setTimeout(showResult,1500);
+  setTimeout(showResult,1200);
 }
 
-function isMaleBlocked(title){
-  return maleExcludeKeywords.some(k=>title.toLowerCase().includes(k));
+function isBlocked(title){
+  return maleBlock.some(k=>title.toLowerCase().includes(k));
 }
 
 function showResult(){
@@ -2193,27 +2179,38 @@ function showResult(){
   for(let cat in courses){
     for(let c of courses[cat]){
       if(selected.length>=3) break;
+      if(gender==="Мужчина" && isBlocked(c.title)) continue;
+      selected.push(c);
+    }
+  }
 
-      if(gender==="Мужчина" && isMaleBlocked(c.title)) continue;
-
-      if(gender==="Женщина" && femaleKeywords.some(k=>c.title.toLowerCase().includes(k))){
-        selected.push(c);
+  // ЖЁСТКИЙ FALLBACK ДЛЯ МУЖЧИН
+  if(gender==="Мужчина" && selected.length<2){
+    for(let cat in courses){
+      for(let c of courses[cat]){
+        if(!isBlocked(c.title)){
+          selected.push(c);
+          if(selected.length>=3) break;
+        }
       }
+      if(selected.length>=3) break;
     }
   }
 
   selected=selected.slice(0,3);
 
-  let recHtml="";
+  let html="";
   selected.forEach(c=>{
-    recHtml+=`
+    html+=`
       <div class="card">
         <h3>${c.title}</h3>
-        <button class="button" onclick="window.open('${c.url}')">Перейти к курсу</button>
+        <button class="button" onclick="window.open('${c.url}')">
+          Перейти
+        </button>
       </div>`;
   });
 
-  document.getElementById("recommendations").innerHTML=recHtml;
+  document.getElementById("recommendations").innerHTML=html;
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -2226,11 +2223,12 @@ function showCatalog(){
     html+=`
       <div class="card">
         <h3>${cat}</h3>
-        <button class="button" onclick="openCategory('${cat}')">Открыть</button>
+        <button class="button" onclick="openCategory('${cat}')">
+          Открыть
+        </button>
       </div>`;
   }
   document.getElementById("catalogGrid").innerHTML=html;
-  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function openCategory(cat){
@@ -2243,18 +2241,18 @@ function openCategory(cat){
     html+=`
       <div class="card">
         <h3>${c.title}</h3>
-        <button class="button" onclick="window.open('${c.url}')">Перейти к курсу</button>
+        <button class="button" onclick="window.open('${c.url}')">
+          Перейти
+        </button>
       </div>`;
   });
 
   document.getElementById("categoryCourses").innerHTML=html;
-  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function backToCatalog(){
   document.getElementById("categoryView").classList.add("hidden");
   document.getElementById("catalog").classList.remove("hidden");
-  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 renderQuestion();
