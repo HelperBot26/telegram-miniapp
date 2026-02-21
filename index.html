@@ -4,7 +4,36 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Подбор курсов</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://telegram.org/js/telegram-web-app.js">
+function generateRecommendations(gender) {
+  const femaleCategories = [
+    "Бизнес и финансы",
+    "Бьюти-профессии",
+    "Эзотерика"
+  ];
+
+  const maleCategories = [
+    "Бизнес и финансы",
+    "Удалённая работа",
+    "Маркетинг и реклама"
+  ];
+
+  const categories = gender === "Женщина"
+    ? femaleCategories
+    : maleCategories;
+
+  const randomCategory =
+    categories[Math.floor(Math.random() * categories.length)];
+
+  const categoryCourses = courses[randomCategory];
+
+  const randomCourse =
+    categoryCourses[Math.floor(Math.random() * categoryCourses.length)];
+
+  return [randomCourse];
+}
+
+</script>
 
 <style>
 *{box-sizing:border-box;}
@@ -2328,6 +2357,35 @@ function backToCatalog(){
 }
 
 renderQuestion();
+
+
+function generateRecommendations(gender) {
+  const femaleCategories = [
+    "Бизнес и финансы",
+    "Бьюти-профессии",
+    "Эзотерика"
+  ];
+
+  const maleCategories = [
+    "Бизнес и финансы",
+    "Удалённая работа",
+    "Маркетинг и реклама"
+  ];
+
+  const categories = gender === "Женщина"
+    ? femaleCategories
+    : maleCategories;
+
+  const randomCategory =
+    categories[Math.floor(Math.random() * categories.length)];
+
+  const categoryCourses = courses[randomCategory];
+
+  const randomCourse =
+    categoryCourses[Math.floor(Math.random() * categoryCourses.length)];
+
+  return [randomCourse];
+}
 
 </script>
 </body>
