@@ -4,36 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Подбор курсов</title>
-<script src="https://telegram.org/js/telegram-web-app.js">
-function generateRecommendations(gender) {
-  const femaleCategories = [
-    "Бизнес и финансы",
-    "Бьюти-профессии",
-    "Эзотерика"
-  ];
-
-  const maleCategories = [
-    "Бизнес и финансы",
-    "Удалённая работа",
-    "Маркетинг и реклама"
-  ];
-
-  const categories = gender === "Женщина"
-    ? femaleCategories
-    : maleCategories;
-
-  const randomCategory =
-    categories[Math.floor(Math.random() * categories.length)];
-
-  const categoryCourses = courses[randomCategory];
-
-  const randomCourse =
-    categoryCourses[Math.floor(Math.random() * categoryCourses.length)];
-
-  return [randomCourse];
-}
-
-</script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <style>
 *{box-sizing:border-box;}
@@ -2228,71 +2199,38 @@ function showResult(){
   document.getElementById("result").classList.remove("hidden");
 
   const gender = answers[0];
-  let pool = [];
 
-  // собираем все курсы
-  for(let cat in courses){
-    pool = pool.concat(courses[cat]);
-  }
-
-  // фильтрация по полу
-  if(gender === "Мужчина"){
-    pool = pool.filter(c => !maleExcludeKeywords.some(k =>
-      c.title.toLowerCase().includes(k)
-    ));
-  }
+  let allowedCategories = [];
 
   if(gender === "Женщина"){
-    // сначала общая выборка без ограничений
-    let esoteric = pool.filter(c =>
-      c.title.toLowerCase().includes("таро") ||
-      c.title.toLowerCase().includes("эзотер") ||
-      c.title.toLowerCase().includes("астро")
-    );
-
-    // перемешка
-    pool = pool.sort(()=>0.5-Math.random());
-
-    let selected = [];
-
-    // 1-2 эзотерики обязательно
-    if(esoteric.length){
-      esoteric = esoteric.sort(()=>0.5-Math.random());
-      selected = selected.concat(esoteric.slice(0, Math.floor(Math.random()*2)+1));
-    }
-
-    // добираем остальными
-    pool.forEach(c=>{
-      if(selected.length<3 && !selected.includes(c)){
-        selected.push(c);
-      }
-    });
-
-    pool = selected;
-  } else {
-    pool = pool.sort(()=>0.5-Math.random());
+    allowedCategories = ["Бизнес и финансы","Бьюти профессии","Эзотерика"];
+  } else if(gender === "Мужчина"){
+    allowedCategories = ["Бизнес и финансы","Удалённая работа","Маркетинг и реклама"];
   }
 
-  // гарантия 2-3
-  if(pool.length < 2){
-    let all = [];
-    for(let cat in courses){
-      all = all.concat(courses[cat]);
+  // собираем курсы только из разрешённых категорий
+  let pool = [];
+  allowedCategories.forEach(cat=>{
+    if(courses[cat]){
+      pool = pool.concat(courses[cat]);
     }
-    all = all.sort(()=>0.5-Math.random());
-    pool = pool.concat(all);
-  }
-
-  let final = pool.slice(0,3);
-
-  let recHtml = "";
-  final.forEach(c=>{
-    recHtml+=`
-      <div class="card">
-        <h3>${c.title}</h3>
-        <button class="button" onclick="window.open('${c.url}')">Перейти к курсу</button>
-      </div>`;
   });
+
+  // если по какой-то причине категория пустая — защита
+  if(pool.length === 0){
+    for(let cat in courses){
+      pool = pool.concat(courses[cat]);
+    }
+  }
+
+  // рандомный курс
+  const randomCourse = pool[Math.floor(Math.random()*pool.length)];
+
+  const recHtml = `
+      <div class="card">
+        <h3>${randomCourse.title}</h3>
+        <button class="button" onclick="window.open('${randomCourse.url}')">Перейти к курсу</button>
+      </div>`;
 
   document.getElementById("recommendations").innerHTML = recHtml;
   window.scrollTo({top:0,behavior:"smooth"});
@@ -2357,35 +2295,6 @@ function backToCatalog(){
 }
 
 renderQuestion();
-
-
-function generateRecommendations(gender) {
-  const femaleCategories = [
-    "Бизнес и финансы",
-    "Бьюти-профессии",
-    "Эзотерика"
-  ];
-
-  const maleCategories = [
-    "Бизнес и финансы",
-    "Удалённая работа",
-    "Маркетинг и реклама"
-  ];
-
-  const categories = gender === "Женщина"
-    ? femaleCategories
-    : maleCategories;
-
-  const randomCategory =
-    categories[Math.floor(Math.random() * categories.length)];
-
-  const categoryCourses = courses[randomCategory];
-
-  const randomCourse =
-    categoryCourses[Math.floor(Math.random() * categoryCourses.length)];
-
-  return [randomCourse];
-}
 
 </script>
 </body>
