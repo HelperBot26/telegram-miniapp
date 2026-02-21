@@ -2208,29 +2208,25 @@ function showResult(){
     allowedCategories = ["Бизнес и финансы","Удалённая работа","Маркетинг и реклама"];
   }
 
-  // собираем курсы только из разрешённых категорий
-  let pool = [];
-  allowedCategories.forEach(cat=>{
-    if(courses[cat]){
-      pool = pool.concat(courses[cat]);
+  let selectedCourses = [];
+
+  // Берём по 1 случайному курсу из каждой разрешённой категории
+  allowedCategories.forEach(cat => {
+    if(courses[cat] && courses[cat].length > 0){
+      const randomCourse = courses[cat][Math.floor(Math.random()*courses[cat].length)];
+      selectedCourses.push(randomCourse);
     }
   });
 
-  // если по какой-то причине категория пустая — защита
-  if(pool.length === 0){
-    for(let cat in courses){
-      pool = pool.concat(courses[cat]);
-    }
-  }
+  let recHtml = "";
 
-  // рандомный курс
-  const randomCourse = pool[Math.floor(Math.random()*pool.length)];
-
-  const recHtml = `
+  selectedCourses.forEach(c=>{
+    recHtml+=`
       <div class="card">
-        <h3>${randomCourse.title}</h3>
-        <button class="button" onclick="window.open('${randomCourse.url}')">Перейти к курсу</button>
+        <h3>${c.title}</h3>
+        <button class="button" onclick="window.open('${c.url}')">Перейти к курсу</button>
       </div>`;
+  });
 
   document.getElementById("recommendations").innerHTML = recHtml;
   window.scrollTo({top:0,behavior:"smooth"});
