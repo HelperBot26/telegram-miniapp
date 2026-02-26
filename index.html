@@ -7,6 +7,10 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
 <style>
 * {
     box-sizing: border-box;
@@ -20,25 +24,19 @@ body {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 20px;
 }
 
 .container {
     width: 100%;
-    max-width: 700px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(18px);
-    border-radius: 22px;
-    padding: 35px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+    max-width: 800px;
+    margin-top: 40px;
 }
 
 h1 {
     text-align: center;
     color: white;
     margin-bottom: 30px;
-    font-size: 26px;
     font-weight: 700;
 }
 
@@ -46,7 +44,6 @@ h1 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    margin-bottom: 30px;
 }
 
 .service-btn {
@@ -60,36 +57,51 @@ h1 {
     transition: 0.3s;
 }
 
-.music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
-.books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
-.plus  { background: linear-gradient(45deg, #00c6ff, #0072ff); }
-.kino  { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
-
 .service-btn:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 25px rgba(0,0,0,0.35);
 }
 
-.content {
+/* Цвета можно добавлять */
+.music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
+.books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
+.plus  { background: linear-gradient(45deg, #00c6ff, #0072ff); }
+.kino  { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
+
+/* ===== МОДАЛЬНОЕ ОКНО ===== */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
     display: none;
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    animation: fadeIn 0.4s ease;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
 }
 
-/* 🔥 Новый заголовок */
-.service-title {
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 30px;
+    animation: fadeIn 0.3s ease;
+    position: relative;
+}
+
+.modal-title {
     font-size: 22px;
     font-weight: 800;
     margin-bottom: 15px;
     color: #1e3c72;
 }
 
-.content p {
+.modal-text {
+    font-size: 15px;
+    line-height: 1.6;
     margin-bottom: 20px;
-    font-size: 16px;
-    line-height: 1.7;
     color: #333;
 }
 
@@ -101,7 +113,6 @@ h1 {
     background: linear-gradient(45deg, #2a5298, #1e3c72);
     color: white;
     font-weight: 600;
-    font-size: 15px;
     transition: 0.3s;
 }
 
@@ -110,9 +121,18 @@ h1 {
     box-shadow: 0 10px 20px rgba(0,0,0,0.25);
 }
 
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 @media (max-width: 600px) {
@@ -126,72 +146,95 @@ h1 {
 
 <div class="container">
     <h1>Выберите сервис</h1>
+    <div class="grid" id="servicesGrid"></div>
+</div>
 
-    <div class="grid">
-        <button class="service-btn music" onclick="showContent('music')">🎵 Яндекс Музыка</button>
-        <button class="service-btn books" onclick="showContent('books')">📚 Яндекс Книги</button>
-        <button class="service-btn plus" onclick="showContent('plus')">⭐ Яндекс Плюс</button>
-        <button class="service-btn kino" onclick="showContent('kino')">🎬 Кинопоиск</button>
+<!-- Модальное окно -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <div class="close-btn" onclick="closeModal()">×</div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-text" id="modalText"></div>
+        <a id="modalLink" class="link-btn" target="_blank">Получить промокод</a>
     </div>
-
-    <div id="content" class="content"></div>
 </div>
 
 <script>
-function showContent(type) {
-    const content = document.getElementById('content');
-    let title = '';
-    let text = '';
-    let link = '';
 
-    if (type === 'music') {
-        title = 'Яндекс Музыка';
-        text = `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Музыке на 45 дней бесплатно!<br><br>
-        Акция доступна только для новых пользователей по всей России.`;
-        link = 'https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1';
-    }
+/* ====== ВСЕ ПОДПИСКИ ЗДЕСЬ ====== */
+/* Чтобы добавить новую — просто копируй объект */
 
-    if (type === 'books') {
-        title = 'Яндекс Книги';
-        text = `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Книгам на 45 дней бесплатно!<br><br>
-        Акция доступна только для новых пользователей по всей России.`;
-        link = 'https://plus.yandex.ru/gift?serviceName=books_gift&promoName=cpa_books_45&utm_source=AFL-PERF&utm_medium=paid_performance&utm_content=1ws0h&utm_campaign=MSCAMP-1262&promocode=&oid=4ms8mpd&wid=1ws0h&statid=125_&linkId=e9780362-2e55-49fd-aec9-4e8f260abcf6&erid=1';
-    }
-
-    if (type === 'plus') {
-        title = 'Яндекс Плюс';
-        text = `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Плюсу на 45 дней бесплатно!<br><br>
-        А для тех, у кого последняя активная мультиподписка закончилась более 30 дней назад — 1 месяц за 1 рубль!<br><br>
-        Акция доступна только для новых пользователей по всей России.`;
-        link = 'https://affiliate.yandex/s/7R2BjaRFfa?statid=125_&erid=1';
-    }
-
-    if (type === 'kino') {
-        title = 'Кинопоиск';
-        text = `Акция для ваших подписчиков.<br><br>
-        Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
-        Акция доступна только для новых пользователей по всей России.`;
-        link = 'https://affiliate.yandex/s/ZuezQFlFq6?statid=125_&erid=1';
-    }
-
-    content.innerHTML = `
-        <div class="service-title">${title}</div>
-        <p>${text}</p>
-        <a class="link-btn" href="${link}" target="_blank">Получить промокод</a>
-    `;
-
-    content.style.display = 'block';
+const services = [
+{
+    id: "music",
+    title: "Яндекс Музыка",
+    class: "music",
+    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Музыке на 45 дней бесплатно!<br><br>
+    Акция доступна только для новых пользователей по всей России.`,
+    link: "https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1"
+},
+{
+    id: "books",
+    title: "Яндекс Книги",
+    class: "books",
+    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Книгам на 45 дней бесплатно!<br><br>
+    Акция доступна только для новых пользователей по всей России.`,
+    link: "https://plus.yandex.ru/gift?serviceName=books_gift&promoName=cpa_books_45&utm_source=AFL-PERF&utm_medium=paid_performance&utm_content=1ws0h&utm_campaign=MSCAMP-1262&promocode=&oid=4ms8mpd&wid=1ws0h&statid=125_&linkId=e9780362-2e55-49fd-aec9-4e8f260abcf6&erid=1"
+},
+{
+    id: "plus",
+    title: "Яндекс Плюс",
+    class: "plus",
+    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Плюсу на 45 дней бесплатно!<br><br>
+    А для тех, у кого последняя активная мультиподписка закончилась более 30 дней назад — 1 месяц за 1 рубль!<br><br>
+    Акция доступна только для новых пользователей по всей России.`,
+    link: "https://affiliate.yandex/s/7R2BjaRFfa?statid=125_&erid=1"
+},
+{
+    id: "kino",
+    title: "Кинопоиск",
+    class: "kino",
+    text: `Акция для ваших подписчиков.<br><br>
+    Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
+    Акция доступна только для новых пользователей по всей России.`,
+    link: "https://affiliate.yandex/s/ZuezQFlFq6?statid=125_&erid=1"
 }
-</script>
+];
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script>
+/* ====== ГЕНЕРАЦИЯ КНОПОК ====== */
+
+const grid = document.getElementById("servicesGrid");
+
+services.forEach(service => {
+    const btn = document.createElement("button");
+    btn.className = `service-btn ${service.class}`;
+    btn.innerText = service.title;
+    btn.onclick = () => openModal(service);
+    grid.appendChild(btn);
+});
+
+/* ====== МОДАЛКА ====== */
+
+function openModal(service) {
+    document.getElementById("modalTitle").innerHTML = service.title;
+    document.getElementById("modalText").innerHTML = service.text;
+    document.getElementById("modalLink").href = service.link;
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+/* ====== TELEGRAM FULLSCREEN ====== */
+
 if (window.Telegram && Telegram.WebApp) {
     const tg = Telegram.WebApp;
     tg.ready();
     tg.expand();
     tg.disableVerticalSwipes();
 }
+
 </script>
 
 </body>
