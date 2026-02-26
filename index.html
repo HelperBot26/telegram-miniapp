@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Промокоды Яндекс</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -78,6 +78,14 @@ h1 {
     animation: fadeIn 0.4s ease;
 }
 
+/* 🔥 Новый заголовок */
+.service-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #1e3c72;
+}
+
 .content p {
     margin-bottom: 20px;
     font-size: 16px;
@@ -132,22 +140,26 @@ h1 {
 <script>
 function showContent(type) {
     const content = document.getElementById('content');
+    let title = '';
     let text = '';
     let link = '';
 
     if (type === 'music') {
+        title = 'Яндекс Музыка';
         text = `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Музыке на 45 дней бесплатно!<br><br>
         Акция доступна только для новых пользователей по всей России.`;
         link = 'https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1';
     }
 
     if (type === 'books') {
+        title = 'Яндекс Книги';
         text = `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Книгам на 45 дней бесплатно!<br><br>
         Акция доступна только для новых пользователей по всей России.`;
         link = 'https://plus.yandex.ru/gift?serviceName=books_gift&promoName=cpa_books_45&utm_source=AFL-PERF&utm_medium=paid_performance&utm_content=1ws0h&utm_campaign=MSCAMP-1262&promocode=&oid=4ms8mpd&wid=1ws0h&statid=125_&linkId=e9780362-2e55-49fd-aec9-4e8f260abcf6&erid=1';
     }
 
     if (type === 'plus') {
+        title = 'Яндекс Плюс';
         text = `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Плюсу на 45 дней бесплатно!<br><br>
         А для тех, у кого последняя активная мультиподписка закончилась более 30 дней назад — 1 месяц за 1 рубль!<br><br>
         Акция доступна только для новых пользователей по всей России.`;
@@ -155,6 +167,7 @@ function showContent(type) {
     }
 
     if (type === 'kino') {
+        title = 'Кинопоиск';
         text = `Акция для ваших подписчиков.<br><br>
         Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
         Акция доступна только для новых пользователей по всей России.`;
@@ -162,14 +175,15 @@ function showContent(type) {
     }
 
     content.innerHTML = `
+        <div class="service-title">${title}</div>
         <p>${text}</p>
         <a class="link-btn" href="${link}" target="_blank">Получить промокод</a>
     `;
+
     content.style.display = 'block';
 }
 </script>
 
-<!-- TELEGRAM MINI APP FULLSCREEN -->
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
 if (window.Telegram && Telegram.WebApp) {
