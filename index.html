@@ -7,10 +7,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
-
 <style>
 * {
     box-sizing: border-box;
@@ -62,13 +58,13 @@ h1 {
     box-shadow: 0 12px 25px rgba(0,0,0,0.35);
 }
 
-/* Цвета можно добавлять */
+/* Цвета */
 .music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
 .books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
 .plus  { background: linear-gradient(45deg, #00c6ff, #0072ff); }
 .kino  { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
 
-/* ===== МОДАЛЬНОЕ ОКНО ===== */
+/* Модалка */
 
 .modal {
     position: fixed;
@@ -95,7 +91,6 @@ h1 {
     font-size: 22px;
     font-weight: 800;
     margin-bottom: 15px;
-    color: #1e3c72;
 }
 
 .modal-text {
@@ -110,22 +105,16 @@ h1 {
     padding: 12px 22px;
     border-radius: 10px;
     text-decoration: none;
-    background: linear-gradient(45deg, #2a5298, #1e3c72);
     color: white;
     font-weight: 600;
     transition: 0.3s;
-}
-
-.link-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
 }
 
 .close-btn {
     position: absolute;
     top: 15px;
     right: 18px;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
     font-weight: 700;
 }
@@ -149,7 +138,6 @@ h1 {
     <div class="grid" id="servicesGrid"></div>
 </div>
 
-<!-- Модальное окно -->
 <div class="modal" id="modal">
     <div class="modal-content">
         <div class="close-btn" onclick="closeModal()">×</div>
@@ -161,47 +149,40 @@ h1 {
 
 <script>
 
-/* ====== ВСЕ ПОДПИСКИ ЗДЕСЬ ====== */
-/* Чтобы добавить новую — просто копируй объект */
-
 const services = [
 {
-    id: "music",
     title: "Яндекс Музыка",
     class: "music",
+    color: "#ff9900",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Музыке на 45 дней бесплатно!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
     link: "https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1"
 },
 {
-    id: "books",
     title: "Яндекс Книги",
     class: "books",
+    color: "#ff2e63",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Книгам на 45 дней бесплатно!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
-    link: "https://plus.yandex.ru/gift?serviceName=books_gift&promoName=cpa_books_45&utm_source=AFL-PERF&utm_medium=paid_performance&utm_content=1ws0h&utm_campaign=MSCAMP-1262&promocode=&oid=4ms8mpd&wid=1ws0h&statid=125_&linkId=e9780362-2e55-49fd-aec9-4e8f260abcf6&erid=1"
+    link: "https://plus.yandex.ru/..."
 },
 {
-    id: "plus",
     title: "Яндекс Плюс",
     class: "plus",
+    color: "#0072ff",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Плюсу на 45 дней бесплатно!<br><br>
-    А для тех, у кого последняя активная мультиподписка закончилась более 30 дней назад — 1 месяц за 1 рубль!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
-    link: "https://affiliate.yandex/s/7R2BjaRFfa?statid=125_&erid=1"
+    link: "https://affiliate.yandex/..."
 },
 {
-    id: "kino",
     title: "Кинопоиск",
     class: "kino",
-    text: `Акция для ваших подписчиков.<br><br>
-    Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
+    color: "#4a00e0",
+    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
-    link: "https://affiliate.yandex/s/ZuezQFlFq6?statid=125_&erid=1"
+    link: "https://affiliate.yandex/..."
 }
 ];
-
-/* ====== ГЕНЕРАЦИЯ КНОПОК ====== */
 
 const grid = document.getElementById("servicesGrid");
 
@@ -213,12 +194,15 @@ services.forEach(service => {
     grid.appendChild(btn);
 });
 
-/* ====== МОДАЛКА ====== */
-
 function openModal(service) {
     document.getElementById("modalTitle").innerHTML = service.title;
+    document.getElementById("modalTitle").style.color = service.color;
     document.getElementById("modalText").innerHTML = service.text;
-    document.getElementById("modalLink").href = service.link;
+
+    const linkBtn = document.getElementById("modalLink");
+    linkBtn.href = service.link;
+    linkBtn.style.background = service.color;
+
     document.getElementById("modal").style.display = "flex";
 }
 
@@ -226,15 +210,16 @@ function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-/* ====== TELEGRAM FULLSCREEN ====== */
+</script>
 
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
 if (window.Telegram && Telegram.WebApp) {
     const tg = Telegram.WebApp;
     tg.ready();
     tg.expand();
     tg.disableVerticalSwipes();
 }
-
 </script>
 
 </body>
