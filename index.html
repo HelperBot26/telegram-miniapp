@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Промокоды Яндекс</title>
+<title>Промокоды</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
@@ -58,11 +58,12 @@ h1 {
     box-shadow: 0 12px 25px rgba(0,0,0,0.35);
 }
 
-/* Цвета */
+/* Цвета сервисов */
 .music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
 .books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
 .plus  { background: linear-gradient(45deg, #00c6ff, #0072ff); }
 .kino  { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
+.kion  { background: linear-gradient(45deg, #00d2ff, #3a47d5); }
 
 /* Модалка */
 
@@ -98,6 +99,22 @@ h1 {
     line-height: 1.6;
     margin-bottom: 20px;
     color: #333;
+}
+
+.promo-block {
+    background: #f4f6f9;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    user-select: all;
+}
+
+.promo-block:hover {
+    background: #e9eef5;
 }
 
 .link-btn {
@@ -143,6 +160,7 @@ h1 {
         <div class="close-btn" onclick="closeModal()">×</div>
         <div class="modal-title" id="modalTitle"></div>
         <div class="modal-text" id="modalText"></div>
+        <div id="promoContainer"></div>
         <a id="modalLink" class="link-btn" target="_blank">Получить промокод</a>
     </div>
 </div>
@@ -150,6 +168,7 @@ h1 {
 <script>
 
 const services = [
+
 {
     title: "Яндекс Музыка",
     class: "music",
@@ -158,6 +177,7 @@ const services = [
     Акция доступна только для новых пользователей по всей России.`,
     link: "https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1"
 },
+
 {
     title: "Яндекс Книги",
     class: "books",
@@ -166,6 +186,7 @@ const services = [
     Акция доступна только для новых пользователей по всей России.`,
     link: "https://plus.yandex.ru/..."
 },
+
 {
     title: "Яндекс Плюс",
     class: "plus",
@@ -174,6 +195,7 @@ const services = [
     Акция доступна только для новых пользователей по всей России.`,
     link: "https://affiliate.yandex/..."
 },
+
 {
     title: "Кинопоиск",
     class: "kino",
@@ -181,7 +203,17 @@ const services = [
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
     link: "https://affiliate.yandex/..."
+},
+
+{
+    title: "KION",
+    class: "kion",
+    color: "#3a47d5",
+    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к KION на 30 дней бесплатно!<br><br>Промокод:`,
+    promo: "2QU2AC9K3399",
+    link: "https://pxl.leads.su/click/397f9eafc45503c0e4189b5df557b40d?aff_sub9=2QU2AC9K3399&erid=2W5zFGm3deY"
 }
+
 ];
 
 const grid = document.getElementById("servicesGrid");
@@ -198,6 +230,21 @@ function openModal(service) {
     document.getElementById("modalTitle").innerHTML = service.title;
     document.getElementById("modalTitle").style.color = service.color;
     document.getElementById("modalText").innerHTML = service.text;
+
+    const promoContainer = document.getElementById("promoContainer");
+    promoContainer.innerHTML = "";
+
+    if (service.promo) {
+        const promoBlock = document.createElement("div");
+        promoBlock.className = "promo-block";
+        promoBlock.innerText = service.promo;
+        promoBlock.onclick = () => {
+            navigator.clipboard.writeText(service.promo);
+            promoBlock.innerText = "Скопировано ✓";
+            setTimeout(() => promoBlock.innerText = service.promo, 1500);
+        };
+        promoContainer.appendChild(promoBlock);
+    }
 
     const linkBtn = document.getElementById("modalLink");
     linkBtn.href = service.link;
