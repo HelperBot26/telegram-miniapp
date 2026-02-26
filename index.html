@@ -3,118 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Подписки Яндекс</title>
+<title>Промокоды Яндекс</title>
 
-<!-- Красивый шрифт -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Montserrat', sans-serif;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
 
-    body {
-        min-height: 100vh;
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
-    .container {
-        width: 100%;
-        max-width: 700px;
-        background: rgba(255,255,255,0.12);
-        backdrop-filter: blur(18px);
-        border-radius: 22px;
-        padding: 35px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.35);
-    }
+.container {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+    border-radius: 22px;
+    padding: 35px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+}
 
-    h1 {
-        text-align: center;
-        color: white;
-        margin-bottom: 30px;
-        font-size: 26px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-    }
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: 700;
+}
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.service-btn {
+    padding: 18px;
+    border: none;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+.music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
+.books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
+.plus  { background: linear-gradient(45deg, #00c6ff, #0072ff); }
+.kino  { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
+
+.service-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+}
+
+.content {
+    display: none;
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    animation: fadeIn 0.4s ease;
+}
+
+.content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+}
+
+.link-btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    background: linear-gradient(45deg, #2a5298, #1e3c72);
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
     .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        margin-bottom: 30px;
+        grid-template-columns: 1fr;
     }
-
-    .service-btn {
-        padding: 18px;
-        border: none;
-        border-radius: 16px;
-        font-size: 15px;
-        font-weight: 600;
-        cursor: pointer;
-        color: white;
-        transition: 0.3s;
-    }
-
-    .music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
-    .books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
-    .plus { background: linear-gradient(45deg, #00c6ff, #0072ff); }
-    .kino { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
-
-    .service-btn:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 25px rgba(0,0,0,0.35);
-    }
-
-    .content {
-        display: none;
-        background: white;
-        border-radius: 18px;
-        padding: 25px;
-        animation: fadeIn 0.4s ease;
-    }
-
-    .content p {
-        margin-bottom: 20px;
-        font-size: 16px;
-        line-height: 1.7;
-        color: #333;
-        font-weight: 400;
-    }
-
-    .link-btn {
-        display: inline-block;
-        padding: 12px 22px;
-        border-radius: 10px;
-        text-decoration: none;
-        background: linear-gradient(45deg, #2a5298, #1e3c72);
-        color: white;
-        font-weight: 600;
-        font-size: 15px;
-        transition: 0.3s;
-    }
-
-    .link-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-    }
+}
 </style>
 </head>
 <body>
@@ -168,8 +165,18 @@ function showContent(type) {
         <p>${text}</p>
         <a class="link-btn" href="${link}" target="_blank">Получить промокод</a>
     `;
-
     content.style.display = 'block';
+}
+</script>
+
+<!-- TELEGRAM MINI APP FULLSCREEN -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+if (window.Telegram && Telegram.WebApp) {
+    const tg = Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+    tg.disableVerticalSwipes();
 }
 </script>
 
