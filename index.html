@@ -58,14 +58,14 @@ h1 {
     box-shadow: 0 12px 25px rgba(0,0,0,0.35);
 }
 
-/* Цвета сервисов */
+/* Цвета сервисов — ВСЕ РАЗНЫЕ */
 .music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
 .books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
 .plus  { background: linear-gradient(45deg, #00c6ff, #0072ff); }
 .kino  { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
-.kion  { background: linear-gradient(45deg, #00d2ff, #3a47d5); }
+.kion  { background: linear-gradient(45deg, #00b09b, #96c93d); } /* Новый зелёный */
 
-/* Модалка */
+/* ===== МОДАЛКА ===== */
 
 .modal {
     position: fixed;
@@ -161,7 +161,7 @@ h1 {
         <div class="modal-title" id="modalTitle"></div>
         <div class="modal-text" id="modalText"></div>
         <div id="promoContainer"></div>
-        <a id="modalLink" class="link-btn" target="_blank">Получить промокод</a>
+        <a id="modalLink" class="link-btn" target="_blank"></a>
     </div>
 </div>
 
@@ -173,6 +173,7 @@ const services = [
     title: "Яндекс Музыка",
     class: "music",
     color: "#ff9900",
+    buttonText: "Получить промокод",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Музыке на 45 дней бесплатно!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
     link: "https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1"
@@ -182,33 +183,38 @@ const services = [
     title: "Яндекс Книги",
     class: "books",
     color: "#ff2e63",
+    buttonText: "Получить промокод",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Книгам на 45 дней бесплатно!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
-    link: "https://plus.yandex.ru/..."
+    link: "https://plus.yandex.ru/gift?serviceName=books_gift&promoName=cpa_books_45&utm_source=AFL-PERF&utm_medium=paid_performance&utm_content=1ws0h&utm_campaign=MSCAMP-1262&promocode=&oid=4ms8mpd&wid=1ws0h&statid=125_&linkId=e9780362-2e55-49fd-aec9-4e8f260abcf6&erid=1"
 },
 
 {
     title: "Яндекс Плюс",
     class: "plus",
     color: "#0072ff",
+    buttonText: "Получить промокод",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Плюсу на 45 дней бесплатно!<br><br>
+    А для тех, у кого последняя активная мультиподписка закончилась более 30 дней назад — 1 месяц за 1 рубль!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
-    link: "https://affiliate.yandex/..."
+    link: "https://affiliate.yandex/s/7R2BjaRFfa?statid=125_&erid=1"
 },
 
 {
     title: "Кинопоиск",
     class: "kino",
     color: "#4a00e0",
+    buttonText: "Получить промокод",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
     Акция доступна только для новых пользователей по всей России.`,
-    link: "https://affiliate.yandex/..."
+    link: "https://affiliate.yandex/s/ZuezQFlFq6?statid=125_&erid=1"
 },
 
 {
     title: "KION",
     class: "kion",
-    color: "#3a47d5",
+    color: "#00b09b",
+    buttonText: "Зарегистрироваться",
     text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к KION на 30 дней бесплатно!<br><br>Промокод:`,
     promo: "2QU2AC9K3399",
     link: "https://pxl.leads.su/click/397f9eafc45503c0e4189b5df557b40d?aff_sub9=2QU2AC9K3399&erid=2W5zFGm3deY"
@@ -248,6 +254,7 @@ function openModal(service) {
 
     const linkBtn = document.getElementById("modalLink");
     linkBtn.href = service.link;
+    linkBtn.innerText = service.buttonText;
     linkBtn.style.background = service.color;
 
     document.getElementById("modal").style.display = "flex";
