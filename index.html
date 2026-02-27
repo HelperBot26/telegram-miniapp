@@ -58,14 +58,13 @@ h1 {
     box-shadow: 0 12px 25px rgba(0,0,0,0.35);
 }
 
-/* Цвета сервисов — ВСЕ РАЗНЫЕ */
+/* Все цвета разные */
 .music { background: linear-gradient(45deg, #ffcc00, #ff9900); }
 .books { background: linear-gradient(45deg, #ff6a00, #ff2e63); }
 .plus  { background: linear-gradient(45deg, #00c6ff, #0072ff); }
 .kino  { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
-.kion  { background: linear-gradient(45deg, #00b09b, #96c93d); } /* Новый зелёный */
-
-/* ===== МОДАЛКА ===== */
+.kion  { background: linear-gradient(45deg, #00b09b, #96c93d); }
+.tv24  { background: linear-gradient(45deg, #ff512f, #dd2476); }
 
 .modal {
     position: fixed;
@@ -97,8 +96,14 @@ h1 {
 .modal-text {
     font-size: 15px;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: #333;
+}
+
+.promo-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .promo-block {
@@ -174,9 +179,9 @@ const services = [
     class: "music",
     color: "#ff9900",
     buttonText: "Получить промокод",
-    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Музыке на 45 дней бесплатно!<br><br>
-    Акция доступна только для новых пользователей по всей России.`,
-    link: "https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1"
+    promo: "87WKHLS7UV",
+    text: `Зарегистрируйтесь и получите доступ на 45 дней бесплатно.`,
+    link: "https://affiliate.yandex/s/50hpLefbme?statid=125_&erid=1&promocode=87WKHLS7UV"
 },
 
 {
@@ -184,9 +189,9 @@ const services = [
     class: "books",
     color: "#ff2e63",
     buttonText: "Получить промокод",
-    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Книгам на 45 дней бесплатно!<br><br>
-    Акция доступна только для новых пользователей по всей России.`,
-    link: "https://plus.yandex.ru/gift?serviceName=books_gift&promoName=cpa_books_45&utm_source=AFL-PERF&utm_medium=paid_performance&utm_content=1ws0h&utm_campaign=MSCAMP-1262&promocode=&oid=4ms8mpd&wid=1ws0h&statid=125_&linkId=e9780362-2e55-49fd-aec9-4e8f260abcf6&erid=1"
+    promo: "8F5V3JWN54",
+    text: `Зарегистрируйтесь и получите доступ на 45 дней бесплатно.`,
+    link: "https://plus.yandex.ru/gift?...&code=8F5V3JWN54"
 },
 
 {
@@ -194,10 +199,9 @@ const services = [
     class: "plus",
     color: "#0072ff",
     buttonText: "Получить промокод",
-    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Яндекс Плюсу на 45 дней бесплатно!<br><br>
-    А для тех, у кого последняя активная мультиподписка закончилась более 30 дней назад — 1 месяц за 1 рубль!<br><br>
-    Акция доступна только для новых пользователей по всей России.`,
-    link: "https://affiliate.yandex/s/7R2BjaRFfa?statid=125_&erid=1"
+    promo: "9CK288T8GP",
+    text: `Зарегистрируйтесь и получите доступ на 45 дней бесплатно.`,
+    link: "https://plus.yandex.ru/gift?...&code=9CK288T8GP"
 },
 
 {
@@ -205,9 +209,9 @@ const services = [
     class: "kino",
     color: "#4a00e0",
     buttonText: "Получить промокод",
-    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к Кинопоиску на 45 дней бесплатно!<br><br>
-    Акция доступна только для новых пользователей по всей России.`,
-    link: "https://affiliate.yandex/s/ZuezQFlFq6?statid=125_&erid=1"
+    promo: "7NYCSSP3W2",
+    text: `Зарегистрируйтесь и получите доступ на 45 дней бесплатно.`,
+    link: "https://plus.yandex.ru/gift?...&code=7NYCSSP3W2"
 },
 
 {
@@ -215,9 +219,19 @@ const services = [
     class: "kion",
     color: "#00b09b",
     buttonText: "Зарегистрироваться",
-    text: `Зарегистрируйтесь по уникальному промокоду и получите доступ к KION на 30 дней бесплатно!<br><br>Промокод:`,
     promo: "2QU2AC9K3399",
+    text: `Получите доступ к KION на 30 дней бесплатно.`,
     link: "https://pxl.leads.su/click/397f9eafc45503c0e4189b5df557b40d?aff_sub9=2QU2AC9K3399&erid=2W5zFGm3deY"
+},
+
+{
+    title: "24ТВ",
+    class: "tv24",
+    color: "#dd2476",
+    buttonText: "Получить промокод",
+    promo: "QNEWGGFS",
+    text: `Смотрите 410 каналов, тысячи фильмов и сериалов 35 дней бесплатно для новых пользователей.`,
+    link: "https://trk.ppdu.ru/click/ST3i4lbX?erid=2SDnjdQemEp"
 }
 
 ];
@@ -233,7 +247,7 @@ services.forEach(service => {
 });
 
 function openModal(service) {
-    document.getElementById("modalTitle").innerHTML = service.title;
+    document.getElementById("modalTitle").innerText = service.title;
     document.getElementById("modalTitle").style.color = service.color;
     document.getElementById("modalText").innerHTML = service.text;
 
@@ -241,14 +255,21 @@ function openModal(service) {
     promoContainer.innerHTML = "";
 
     if (service.promo) {
+        const label = document.createElement("div");
+        label.className = "promo-label";
+        label.innerText = "Ваш промокод:";
+
         const promoBlock = document.createElement("div");
         promoBlock.className = "promo-block";
         promoBlock.innerText = service.promo;
+
         promoBlock.onclick = () => {
             navigator.clipboard.writeText(service.promo);
             promoBlock.innerText = "Скопировано ✓";
             setTimeout(() => promoBlock.innerText = service.promo, 1500);
         };
+
+        promoContainer.appendChild(label);
         promoContainer.appendChild(promoBlock);
     }
 
